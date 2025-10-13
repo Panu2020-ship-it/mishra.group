@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mishra Research Group - Innovation in Optics & AI</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -63,16 +61,6 @@
         }
         .nav-link.active {
             color: var(--accent-color);
-        }
-
-        /* Research Dropdown */
-        .dropdown .dropdown-menu {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
         }
 
         /* Hero Section */
@@ -141,32 +129,33 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- ========== HEADER ========== -->
     <header id="header" class="navbar-sticky fixed top-0 left-0 right-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
                 <a href="#home" class="flex items-center space-x-2 text-2xl font-bold page-link">
                     <span class="bg-cyan-500 text-black w-9 h-9 flex items-center justify-center rounded-md">ML</span>
                     <span>Mishra Lab</span>
                 </a>
 
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link page-link active">Home</a>
                     <a href="#news" class="nav-link page-link">News</a>
                     <a href="#people" class="nav-link page-link">People</a>
-                    <div class="relative dropdown">
-                        <button class="nav-link flex items-center">
+                    
+                    <div class="relative dropdown group">
+                        <button id="researchBtn" class="nav-link flex items-center">
                             Research
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </button>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 transform -translate-y-2 pointer-events-none z-50">
+                        <div id="researchMenu" class="dropdown-menu absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 transform -translate-y-2 pointer-events-none z-50 transition-all duration-200">
                             <a href="#research-collaborators" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Collaborators</a>
                             <a href="#research-projects" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Projects</a>
                             <a href="#research-facilities" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Facilities</a>
                         </div>
                     </div>
+
                     <a href="#publications" class="nav-link page-link">Publications</a>
                     <a href="#teaching" class="nav-link page-link">Teaching</a>
                     <a href="#positions" class="nav-link page-link">Positions</a>
@@ -174,13 +163,11 @@
                     <a href="#contact" class="nav-link page-link">Contact</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2">
              <a href="#home" class="block nav-link page-link active">Home</a>
              <a href="#news" class="block nav-link page-link">News</a>
@@ -196,12 +183,9 @@
         </div>
     </header>
 
-    <!-- ========== MAIN CONTENT ========== -->
     <main id="main-content" class="flex-grow pt-20">
-        <!-- Container for all pages -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-            <!-- Home Page -->
             <div id="home-page" class="page-content">
                 <section class="hero-section -mx-4 -mt-12 sm:-mx-6 lg:-mx-8 h-[60vh] md:h-[70vh] flex items-center justify-center text-center rounded-b-2xl">
                     <div class="p-8">
@@ -240,7 +224,6 @@
                 </section>
             </div>
 
-            <!-- News Page -->
             <div id="news-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Latest News</h1>
                 <div class="space-y-8">
@@ -268,24 +251,21 @@
                 </div>
             </div>
 
-            <!-- People Page -->
             <div id="people-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Our Team</h1>
                 
-                <!-- Principal Investigator -->
                 <section>
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">Lab Head</h2>
                      <div class="info-card rounded-lg p-6 flex flex-col md:flex-row items-center gap-8">
-                        <img src="head.jpeg" alt="Dr. Yogeshwar Nath Mishra" class="w-36 h-36 rounded-full object-cover border-2 border-cyan-500">
-                        <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-bold">Dr. Yogeshwar Nath Mishra</h3>
-                            <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
-                            <p class="text-gray-400 max-w-2xl">Ex-NASA/Caltech researcher with a PhD from Lund University, specializing in laser diagnostics, ultrafast phenomena, and AI-driven imaging. Recipient of the PETRA Award for young researchers.</p>
-                        </div>
+                         <img src="head.jpeg" alt="Dr. Yogeshwar Nath Mishra" class="w-36 h-36 rounded-full object-cover border-2 border-cyan-500">
+                         <div class="text-center md:text-left">
+                             <h3 class="text-2xl font-bold">Dr. Yogeshwar Nath Mishra</h3>
+                             <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
+                             <p class="text-gray-400 max-w-2xl">Ex-NASA/Caltech researcher with a PhD from Lund University, specializing in laser diagnostics, ultrafast phenomena, and AI-driven imaging. Recipient of the PETRA Award for young researchers.</p>
+                         </div>
                     </div>
                 </section>
                 
-                <!-- PhD Scholars -->
                 <section class="mt-12">
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">PhD Scholars</h2>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -307,17 +287,17 @@
                     </div>
                 </section>
 
-                 <!-- Inten -->
-                <section class="mt-12">
+                 <section class="mt-12">
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">Intern</h2>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="info-card text-center p-6 rounded-lg">
                             <img src="pranlpatil.png" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
                             <h4 class="text-xl font-bold">Pranil Patil</h4>
                         </div>
+                    </div>
+                </section>
             </div>
 
-            <!-- Research: Collaborators Page -->
             <div id="research-collaborators-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Collaborators</h1>
                 <p class="text-lg text-gray-300 mb-8">We are proud to collaborate with leading academic institutions and research organizations around the world.</p>
@@ -337,7 +317,6 @@
                 </div>
             </div>
 
-            <!-- Research: Projects Page -->
             <div id="research-projects-page" class="page-content hidden">
                  <h1 class="text-4xl font-bold section-heading mb-12">Ongoing Projects</h1>
                  <div class="grid lg:grid-cols-3 gap-8">
@@ -359,7 +338,6 @@
                  </div>
             </div>
 
-            <!-- Research: Facilities Page -->
             <div id="research-facilities-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Lab Facilities</h1>
                 <div class="grid md:grid-cols-2 gap-8">
@@ -380,7 +358,6 @@
                 </div>
             </div>
 
-            <!-- Publications Page -->
             <div id="publications-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Select Publications</h1>
                 <div class="space-y-10">
@@ -413,7 +390,6 @@
                 </div>
             </div>
 
-            <!-- Teaching Page -->
             <div id="teaching-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Teaching</h1>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -430,7 +406,6 @@
                 </div>
             </div>
 
-            <!-- Positions Page -->
             <div id="positions-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Available Positions</h1>
                 <div class="info-card p-8 rounded-lg">
@@ -451,19 +426,17 @@
                 </div>
             </div>
 
-            <!-- Gallery Page -->
             <div id="gallery-page" class="page-content hidden">
                  <h1 class="text-4xl font-bold section-heading mb-12">Gallery</h1>
                  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                    <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
                  </div>
             </div>
 
-            <!-- Contact Page -->
             <div id="contact-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Contact Us</h1>
                 <div class="grid md:grid-cols-2 gap-12">
@@ -471,20 +444,20 @@
                         <h3 class="text-2xl font-bold text-cyan-400 mb-4">Get in Touch</h3>
                         <p class="text-gray-300 mb-6">We welcome inquiries from prospective students, potential collaborators, and industry partners. Please feel free to reach out.</p>
                          <div class="space-y-4">
-                            <div class="flex items-start gap-4">
-                               <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                <div>
-                                    <h4 class="font-semibold">Email</h4>
-                                    <a href="mailto:mishrayn@iitj.ac.in" class="text-gray-300 hover:text-cyan-400">mishrayn@iitj.ac.in</a>
-                                </div>
-                            </div>
                              <div class="flex items-start gap-4">
-                                <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div>
-                                    <h4 class="font-semibold">Address</h4>
-                                    <p class="text-gray-300">Department of Physics<br>Indian Institute of Technology Jodhpur<br>Jodhpur, Rajasthan, India - 342030</p>
-                                </div>
-                            </div>
+                                 <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                 <div>
+                                     <h4 class="font-semibold">Email</h4>
+                                     <a href="mailto:mishrayn@iitj.ac.in" class="text-gray-300 hover:text-cyan-400">mishrayn@iitj.ac.in</a>
+                                 </div>
+                             </div>
+                              <div class="flex items-start gap-4">
+                                 <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                 <div>
+                                     <h4 class="font-semibold">Address</h4>
+                                     <p class="text-gray-300">Department of Physics<br>Indian Institute of Technology Jodhpur<br>Jodhpur, Rajasthan, India - 342030</p>
+                                 </div>
+                             </div>
                          </div>
                     </div>
                     <div>
@@ -502,7 +475,6 @@
         </div>
     </main>
 
-    <!-- ========== FOOTER ========== -->
     <footer class="bg-black border-t border-gray-800 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
@@ -513,36 +485,56 @@
                  <div>
                     <h4 class="text-lg font-bold">Quick Links</h4>
                      <div class="mt-2 space-y-1">
-                        <a href="#home" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Home</a>
-                        <a href="#research-projects" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Research</a>
-                        <a href="#publications" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Publications</a>
-                    </div>
+                         <a href="#home" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Home</a>
+                         <a href="#research-projects" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Research</a>
+                         <a href="#publications" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Publications</a>
+                     </div>
                 </div>
                 <div>
                      <h4 class="text-lg font-bold">Connect</h4>
                      <div class="flex justify-center md:justify-start space-x-4 mt-2">
-                        <a href="https://scholar.google.com/citations?user=wvhys5YAAAAJ&hl=en&oi=ao" target="_blank" class="text-gray-400 hover:text-cyan-400" title="Google Scholar">
-                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5z"></path></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/mishrayn" target="_blank" class="text-gray-400 hover:text-cyan-400" title="LinkedIn">
-                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                        </a>
-                    </div>
+                         <a href="https://scholar.google.com/citations?user=wvhys5YAAAAJ&hl=en&oi=ao" target="_blank" class="text-gray-400 hover:text-cyan-400" title="Google Scholar">
+                              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5z"></path></svg>
+                         </a>
+                         <a href="https://www.linkedin.com/in/mishrayn" target="_blank" class="text-gray-400 hover:text-cyan-400" title="LinkedIn">
+                              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                         </a>
+                     </div>
                 </div>
             </div>
              <div class="text-center text-sm text-gray-500 mt-8 border-t border-gray-800 pt-6">
-                <p>&copy; 2025 Mishra Research Group, IIT Jodhpur. All Rights Reserved.</p>
-            </div>
+                 <p>&copy; 2025 Mishra Research Group, IIT Jodhpur. All Rights Reserved.</p>
+             </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Element selectors
             const pageLinks = document.querySelectorAll('.page-link');
             const pages = document.querySelectorAll('.page-content');
             const navLinks = document.querySelectorAll('header .nav-link');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            const researchBtn = document.getElementById('researchBtn');
+            const researchMenu = document.getElementById('researchMenu');
+
+            // --- Research Dropdown Toggle (from your new code) ---
+            researchBtn.addEventListener('click', (e) => {
+                // Prevent this click from being caught by the document click listener below
+                e.stopPropagation(); 
+                researchMenu.classList.toggle('opacity-0');
+                researchMenu.classList.toggle('pointer-events-none');
+                researchMenu.classList.toggle('-translate-y-2');
+                researchMenu.classList.toggle('translate-y-0');
+            });
+            
+            // --- Close dropdown when clicking outside ---
+            document.addEventListener('click', () => {
+                researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                researchMenu.classList.remove('translate-y-0');
+            });
+
 
             // --- Mobile Menu Toggle ---
             mobileMenuButton.addEventListener('click', () => {
@@ -571,21 +563,23 @@
                 // Update active nav link
                 updateActiveLink(pageId);
                 
-                // Close mobile menu on navigation
+                // Close mobile menu and research dropdown on navigation
                 mobileMenu.classList.add('hidden');
-                
+                researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                researchMenu.classList.remove('translate-y-0');
+
                 // Scroll to top of content
                 document.getElementById('main-content').scrollIntoView();
             };
             
             const updateActiveLink = (pageId) => {
                  navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    // Handle dropdown links and main links
-                    if (link.getAttribute('href') === `#${pageId}`) {
-                        link.classList.add('active');
-                    }
-                });
+                     link.classList.remove('active');
+                     // Handle dropdown links and main links
+                     if (link.getAttribute('href') === `#${pageId}`) {
+                         link.classList.add('active');
+                     }
+                 });
             };
 
             // Event listener for all page links

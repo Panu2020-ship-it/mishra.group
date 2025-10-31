@@ -20,10 +20,6 @@
             --accent-color: #00bfff; /* cyan blue */
             --border-color: #27272a; /* dark gray for borders */
             --card-bg: #18181b; /* slightly lighter black for cards */
-
-            /* Added for new publications section */
-            --color-dark-slate: #2F4F4F; /* Dark Slate Gray */
-            --color-iitj-maroon: #800000; /* Maroon */
         }
 
         body {
@@ -129,91 +125,90 @@
         .hidden {
             display: none;
         }
-
-        /* --- NEW Publication Page Styles --- */
-        #publications-page {
-            /* This page has a light theme, overriding the body default */
-            background-color: #ffffff; 
-            padding: 2.5rem 1.5rem; /* 40px 24px */
-            border-radius: 0.75rem; /* 12px */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
+        
+        /* Publication Section Styling */
         .publication-list {
             display: flex;
             flex-direction: column;
-            gap: 2rem; /* 32px */
+            gap: 2rem; /* space between items */
         }
         .publication-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem; /* 12px */
+            padding: 1.5rem; /* 24px */
             display: flex;
-            flex-direction: column; /* Mobile first */
-            align-items: center;
+            flex-direction: column;
+            /* md:flex-direction: row; */ /* row on medium screens and up - removing this line to match image */
             gap: 1.5rem; /* 24px */
-            padding-bottom: 2rem; /* 32px */
-            border-bottom: 1px solid #e0e0e0; /* Separator line */
-            text-align: center; /* Mobile */
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .publication-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.1);
         }
         .publication-item .thumbnail {
             flex-shrink: 0;
         }
         .publication-item .thumbnail img {
-            width: 160px; /* 10rem */
-            height: 120px; /* 7.5rem */
+            width: 128px;  /* 8rem */
+            height: 128px; /* 8rem */
             object-fit: cover;
             border-radius: 0.5rem; /* 8px */
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
         }
         .publication-item .details {
             flex-grow: 1;
-            width: 100%;
+            text-align: center;
+            /* md:text-left; */ /* align left on medium screens - removing this line */
         }
         .publication-item .details .title {
             font-size: 1.125rem; /* 18px */
-            font-weight: 600;
-            color: #111827; /* Dark text */
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
         .publication-item .details .authors {
             font-size: 0.875rem; /* 14px */
-            color: #4b5563; /* Medium gray text */
+            color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
         .publication-item .details .venue {
             font-size: 0.875rem; /* 14px */
-            color: #6b7280; /* Lighter gray text */
+            color: var(--accent-color);
             font-style: italic;
         }
         .publication-item .action-button {
             flex-shrink: 0;
-            margin-top: 1rem; /* Mobile */
+            margin-top: 1rem;
+            /* md:margin-top: 0; */
         }
         .view-paper-btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem; /* 8px */
+            gap: 0.5rem;
             padding: 0.625rem 1.25rem; /* 10px 20px */
             border-radius: 0.375rem; /* 6px */
-            font-weight: 500;
-            color: white;
-            background-color: #3b82f6; /* Blue-600 */
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .view-paper-btn:hover {
-            background-color: #2563eb; /* Blue-700 */
+            background-color: var(--accent-color);
+            color: var(--bg-color);
         }
         .view-paper-btn svg {
-            width: 1.125rem; /* 18px */
-            height: 1.125rem; /* 18px */
+            width: 1rem; /* 16px */
+            height: 1rem; /* 16px */
         }
 
-        /* Desktop styles for publication item */
+        /* Responsive adjustments for publications */
         @media (min-width: 768px) {
             .publication-item {
-                flex-direction: row; /* Row layout on desktop */
+                flex-direction: row;
                 text-align: left;
             }
             .publication-item .details {
@@ -221,6 +216,7 @@
             }
             .publication-item .action-button {
                 margin-top: 0;
+                margin-left: auto; /* Push button to the right */
             }
         }
     </style>
@@ -230,10 +226,9 @@
     <header id="header" class="navbar-sticky fixed top-0 left-0 right-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center justify-between">
-              <!-- Added opening <a> tag here -->
-              <a href="#home" class="flex items-center gap-3 page-link">
+              <a href="#home" class="page-link flex items-center gap-3"> <!-- Added link and gap -->
                 <img src="logo.png" alt="Mishra Lab Logo" class="w-10 h-10 rounded-md border border-cyan-500">
-                <span>AISL Lab</span>
+                <span class="text-xl font-bold">AISL Lab</span> <!-- Made text bigger -->
               </a>
 
                 <div class="hidden md:flex items-center space-x-8">
@@ -288,15 +283,13 @@
             <div id="home-page" class="page-content">
                 <section class="hero-section -mx-4 -mt-12 sm:-mx-6 lg:-mx-8 h-[60vh] md:h-[70vh] flex items-center justify-center text-center rounded-b-2xl">
                     <div class="p-8">
-                        <!-- 1. Added "text-yellow-400" to the h1 tag -->
                         <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-yellow-400">Advanced Imaging & Sensing Lab (AISL)</h1>
-                        <!-- 2. Changed "text-yellow-400" to "text-cyan-400" in the p tag -->
-                        <p class="mt-4 text-lg md:text-2xl text-white font-medium">Innovation in Optics, Imaging, and AI-Powered Diagnostics</p>
+                        <p class="mt-4 text-lg md:text-2xl text-cyan-400 font-medium">Innovation in Optics, Imaging, and AI-Powered Diagnostics</p>
                     </div>
                 </section>
                 
                 <section class="mt-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold section-heading mb-4">Welcome to AISL</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold section-heading mb-4">Welcome to Advanced Imaging & Sensing Lab (AISL)</h2>
                     <p class="max-w-3xl mx-auto text-lg text-gray-300">
                         We are a dynamic research group at IIT Jodhpur dedicated to pushing the boundaries of optical science and engineering. Our interdisciplinary work combines fundamental ultrafast science with applied innovations in biomedical imaging, sustainable energy diagnostics, and space technology.
                     </p>
@@ -328,6 +321,15 @@
             <div id="news-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Latest News</h1>
                 <div class="space-y-8">
+                    <!-- NEW ITEM 1 -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
+                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 05, 2025</div>
+                       <div class="flex-1">
+                           <h3 class="text-xl font-bold mb-2">Dr. Mishra reports CUP2AI, the world's fastest molecular mapping technique.</h3>
+                           <p class="text-gray-400">Our lab's latest work on CUP2AI has been recognized as the fastest single-shot wide-field molecular mapping technique. The research has been featured in Physics World, Phys.org, and Nature India.</p>
+                       </div>
+                    </div>
+                    <!-- EXISTING ITEM 1 -->
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Oct 10, 2025</div>
                        <div class="flex-1">
@@ -335,6 +337,7 @@
                            <p class="text-gray-400">The talk will focus on recent advancements in high-throughput space-time Fourier ptychography.</p>
                        </div>
                     </div>
+                     <!-- EXISTING ITEM 2 -->
                      <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Sep 15, 2025</div>
                        <div class="flex-1">
@@ -342,12 +345,39 @@
                            <p class="text-gray-400">Congratulations to the team for their hard work on developing novel planar laser-based measurements.</p>
                        </div>
                     </div>
+                    <!-- NEW ITEM 2 -->
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
-                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Aug 01, 2025</div>
+                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Aug 20, 2025</div>
                        <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Welcoming new PhD scholars Akshika,Saloni & Prashand to the group!</h3>
-                           <p class="text-gray-400">We are excited to have them join our ongoing research in biomedical imaging and laser diagnostics.</p>
+                           <h3 class="text-xl font-bold mb-2">Dr. Mishra wins 2025 Young Researcher Award (Runner-up) from FAU Erlangen.</h3>
+                           <p class="text-gray-400">Congratulations to Dr. Mishra for being named runner-up for the Young Researcher Award from Erlangen Graduate School in Advanced Optical Technologies (FAU Erlangen, Germany).</p>
                        </div>
+                    </div>
+                    <!-- UPDATED ITEM 3 (Saloni & Prashant) with Photo -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
+                        <!-- Image -->
+                        <img src="https://placehold.co/600x400/18181b/9ca3af?text=Saloni+&+Prashant" alt="Saloni Sarda and Prashant Chitranshi" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Saloni+&+Prashant'">
+                        <!-- Content -->
+                        <div class="flex flex-col flex-1">
+                            <div class="w-full text-cyan-400 font-semibold mb-2">Jul 24, 2025</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-2">Welcoming new PhD scholars Saloni & Prashant to the group!</h3>
+                                <p class="text-gray-400">We are excited to have them join our ongoing research in biomedical imaging and laser diagnostics.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- UPDATED item for Akshika with Photo -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
+                        <!-- Image -->
+                        <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
+                        <!-- Content -->
+                        <div class="flex flex-col flex-1">
+                            <div class="w-full text-cyan-400 font-semibold mb-2">Jan 02, 2024</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-2">Welcoming PhD scholar Akshika Mishra to the group!</h3>
+                                <p class="text-gray-400">We are excited to have her join our team.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -371,17 +401,17 @@
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">PhD Scholars</h2>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="info-card text-center p-6 rounded-lg">
-                            <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
+                            <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Akshika'">
                             <h4 class="text-xl font-bold">Akshika Mishra</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
                         </div>
                         <div class="info-card text-center p-6 rounded-lg">
-                            <img src="salonisarda.jpg" alt="Saloni Sarda" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
+                            <img src="salonisarda.jpg" alt="Saloni Sarda" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Saloni'">
                             <h4 class="text-xl font-bold">Saloni Sarda</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
                         </div>
                          <div class="info-card text-center p-6 rounded-lg">
-                            <img src="Prashant.jpg" alt="Prashant Chitranshi" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
+                            <img src="Prashant.jpg" alt="Prashant Chitranshi" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Prashant'">
                             <h4 class="text-xl font-bold">Prashant Chitranshi</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
                         </div>
@@ -392,7 +422,7 @@
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">Intern</h2>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="info-card text-center p-6 rounded-lg">
-                            <img src="pranilpatil.tech.png" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
+                            <img src="pranilpatil.tech.png" alt="Pranil Patil" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Pranil'">
                             <h4 class="text-xl font-bold">Pranil Patil</h4>
                         </div>
                     </div>
@@ -459,18 +489,14 @@
                 </div>
             </div>
 
-            <!-- === REPLACED PUBLICATIONS SECTION START === -->
             <div id="publications-page" class="page-content hidden">
-                <!-- This div gets new styles from the CSS added to <head> -->
+                <h1 class="text-4xl font-bold section-heading mb-12">Publications</h1>
                 
-                <h2 class="text-4xl font-extrabold mb-8 pb-2" style="color: var(--color-dark-slate); border-bottom: 2px solid var(--color-iitj-maroon);">2025 Publications</h2>
-            
                 <div class="publication-list">
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                            <!-- Added onerror fallback image -->
-                            <img src="High-throughput.jpeg" alt="Thumbnail for ptychography paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                            <img src="High-throughput.jpeg" alt="Thumbnail for ptychography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">High-throughput space-time Fourier ptychography for motile microorganisms</p>
@@ -487,7 +513,7 @@
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                            <img src="Experiments in Fluids.jpg" alt="Thumbnail for flow-blurring sprays paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                            <img src="Experiments in Fluids.jpg" alt="Thumbnail for planar laser measurements paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Planar laser-based measurements of droplet size, volume fraction, and velocity in flow-blurring sprays</p>
@@ -504,7 +530,7 @@
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                            <img src="publication3.png" alt="Thumbnail for compressed ultrafast photography paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                            <img src="publication3.png" alt="Thumbnail for compressed ultrafast photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Compressed Ultrafast Photography of Plasmas Formed from Laser Breakdown of Dense Gases Reveals that Internal Processes Dominate Evolution at Early Times</p>
@@ -521,7 +547,7 @@
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                            <img src="publication4.jpg" alt="Thumbnail for fovea stacking paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                            <img src="publication4.jpg" alt="Thumbnail for fovea stacking paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Fovea Stacking: Imaging with Dynamic Localized Aberration Correction</p>
@@ -536,26 +562,26 @@
                         </div>
                     </div>
 
+                     <div class="publication-item">
+                         <div class="thumbnail">
+                             <img src="publication5.jpg" alt="Thumbnail for nano-size mapping paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                         </div>
+                         <div class="details">
+                             <p class="title">Single-shot two-dimensional nano-size mapping of fluorescent molecules by ultrafast polarization anisotropy imaging</p>
+                             <p class="authors">P Wang, YN Mishra, FJ Bauer, MS Gudipati, LV Wang</p>
+                             <p class="venue"><em>Nature Communications 16 (1), 5019</em>, 2025</p>
+                         </div>
+                         <div class="action-button">
+                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:1yQoGdGgb4wC" target="_blank" class="view-paper-btn">
+                                 <span>View Paper</span>
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                             </a>
+                         </div>
+                     </div>
+                     
                     <div class="publication-item">
                         <div class="thumbnail">
-                            <img src="publication5.jpg" alt="Thumbnail for nano-size mapping paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
-                        </div>
-                        <div class="details">
-                            <p class="title">Single-shot two-dimensional nano-size mapping of fluorescent molecules by ultrafast polarization anisotropy imaging</p>
-                            <p class="authors">P Wang, YN Mishra, FJ Bauer, MS Gudipati, LV Wang</p>
-                            <p class="venue"><em>Nature Communications 16 (1), 5019</em>, 2025</p>
-                        </div>
-                        <div class="action-button">
-                            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:1yQoGdGgb4wC" target="_blank" class="view-paper-btn">
-                                <span>View Paper</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="thumbnail">
-                            <img src="publication6.jpg" alt="Thumbnail for water ice chemistry paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                            <img src="publication6.jpg" alt="Thumbnail for water ice paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Electron-induced chemistry and sputtering of volatile species from amorphous and crystalline water ice</p>
@@ -572,41 +598,41 @@
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                                <img src="publication7.jpg" alt="Thumbnail for high-speed fourier ptychographic paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                                <img src="publication7.jpg" alt="Thumbnail for flow-blurring sprays paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">High-Speed Fourier Ptychographic Microscopy System for Live Microorganisms Imaging</p>
                             <p class="authors">K Kang, M Sun, YN Mishra, W Heidrich</p>
-                            <p class="venue"><em>(Venue not specified)</em></p>
+                            <p class="venue">2025</p> <!-- Venue was missing, added year -->
                         </div>
                         <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:JQOojiI6XY0C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                                <img src="publication8.jpg" alt="Thumbnail for Mie scattering paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                                <img src="publication8.jpg" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Impact of polarization and detection angle on Mie scattering signals for planar droplet sizing</p>
                             <p class="authors">BW Klevansky, YN Mishra, BL Lehnert, M Wensing, FJ Bauer, S Will</p>
                             <p class="venue"><em>Experiments in Fluids 66 (1), 5</em>, 2025</p>
                         </div>
-                       <div class="action-button">
+                        <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:ye4kPcJQO24C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
                     
                     <div class="publication-item">
                         <div class="thumbnail">
-                                <img src="publication9.png" alt="Thumbnail for Latent Space Imaging paper" onerror="this.src='https://placehold.co/160x120/eee/999?text=Image'">
+                                <img src="publication9.png" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Latent Space Imaging</p>
@@ -616,16 +642,13 @@
                         <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:eq2jaN3J8jMC" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
 
                 </div>
-
             </div>
-            <!-- === REPLACED PUBLICATIONS SECTION END === -->
-
 
             <div id="teaching-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Teaching</h1>
@@ -653,8 +676,8 @@
                             <p class="text-gray-400">Openings available for students with a background in Physics, Electrical Engineering, or a related field. Experience with optics or programming is a plus.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-cyan-400">Industry Sponsored PhD Position</h3>
-                            <p class="text-gray-400">We have openings for PhD students sponsored by industry partners. Please reach out to discuss potential projects.</p>
+                            <h3 class="text-2xl font-bold text-cyan-400">Industry Sponsored PhD Positions</h3>
+                            <p class="text-gray-400">We have specific projects available for PhD candidates supported by our industry partners. Please inquire for current openings.</p>
                         </div>
                         <div>
                             <h3 class="text-2xl font-bold text-cyan-400">Internships</h3>
@@ -670,8 +693,8 @@
             <div id="gallery-page" class="page-content hidden">
                  <h1 class="text-4xl font-bold section-heading mb-12">Gallery</h1>
                  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https::/placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                     <div class="overflow-hidden rounded-lg"><img src="https::/placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
                      <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
                      <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
                      <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
@@ -720,7 +743,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
-                    <h4 class="text-lg font-bold">AISL Research Group</h4>
+                    <h4 class="text-lg font-bold">Mishra Research Group</h4>
                     <p class="text-sm text-gray-400 mt-2">IIT Jodhpur, Department of Physics</p>
                 </div>
                  <div>
@@ -744,7 +767,7 @@
                 </div>
             </div>
              <div class="text-center text-sm text-gray-500 mt-8 border-t border-gray-800 pt-6">
-                 <p>&copy; 2026 Mishra Research Group, IIT Jodhpur. All Rights Reserved.</p>
+                 <p>&copy; 2025 Mishra Research Group, IIT Jodhpur. All Rights Reserved.</p>
              </div>
         </div>
     </footer>
@@ -840,5 +863,3 @@
 </body>
 </html>
 
-
-    

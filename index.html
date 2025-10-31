@@ -18,7 +18,7 @@
             --text-primary: #e5e7eb; /* light gray */
             --text-secondary: #9ca3af; /* medium gray */
             --accent-color: #00bfff; /* cyan blue */
-            --border-color: #27272a; /* dark gray for borders */
+            --border-color: #2727a; /* dark gray for borders */
             --card-bg: #18181b; /* slightly lighter black for cards */
         }
 
@@ -219,6 +219,28 @@
                 margin-left: auto; /* Push button to the right */
             }
         }
+
+        /* News Filter Buttons */
+        .btn-news-filter {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* 6px */
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-news-filter:hover {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border-color: var(--accent-color);
+        }
+        .btn-news-filter.active {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -320,63 +342,84 @@
 
             <div id="news-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Latest News</h1>
-                <div class="space-y-8">
-                    <!-- NEW ITEM 1 -->
-                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
-                        <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
+
+                <!-- NEW: Filter Buttons -->
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <button class="btn-news-filter active" data-filter="all">All News</button>
+                    <button class="btn-news-filter" data-filter="events">Upcoming Events</button>
+                    <button class="btn-news-filter" data-filter="workshops">Workshops</button>
+                    <button class="btn-news-filter" data-filter="podcasts">Podcasts</button>
+                </div>
+
+                <!-- News content container -->
+                <div class="space-y-8" id="news-container">
+                    <!-- ITEM 1: CUP2AI (Category: all) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 05, 2025</div>
                        <div class="flex-1">
                            <h3 class="text-xl font-bold mb-2">Dr. Mishra reports CUP2AI, the world's fastest molecular mapping technique.</h3>
                            <p class="text-gray-400">Our lab's latest work on CUP2AI has been recognized as the fastest single-shot wide-field molecular mapping technique. The research has been featured in Physics World, Phys.org, and Nature India.</p>
                        </div>
                     </div>
-                    <!-- EXISTING ITEM 1 -->
-                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
-                        <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
+                    <!-- ITEM 2: SPIE Keynote (Category: events) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="events">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Oct 10, 2025</div>
                        <div class="flex-1">
                            <h3 class="text-xl font-bold mb-2">Dr. Mishra to deliver a keynote at SPIE Optics + Photonics 2026.</h3>
                            <p class="text-gray-400">The talk will focus on recent advancements in high-throughput space-time Fourier ptychography.</p>
                        </div>
                     </div>
-                     <!-- EXISTING ITEM 2 -->
-                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
-                         <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
+                     <!-- ITEM 3: Flow-blurring paper (Category: all) -->
+                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Sep 15, 2025</div>
                        <div class="flex-1">
                            <h3 class="text-xl font-bold mb-2">Our paper on flow-blurring sprays is published in Optics Express.</h3>
                            <p class="text-gray-400">Congratulations to the team for their hard work on developing novel planar laser-based measurements.</p>
                        </div>
                     </div>
-                    <!-- NEW ITEM 2 -->
-                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
-                        <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
-                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Aug 20, 2025</div>
+                    
+                    <!-- NEW PLACEHOLDER WORKSHOP (Category: workshops) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item hidden" data-category="workshops">
+                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Dec 01, 2025</div>
                        <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Dr. Mishra wins 2025 Young Researcher Award (Runner-up) from FAU Erlangen.</h3>
-                           <p class="text-gray-400">Congratulations to Dr. Mishra for being named runner-up for the Young Researcher Award from Erlangen Graduate School in Advanced Optical Technologies (FAU Erlangen, Germany).</p>
+                           <h3 class="text-xl font-bold mb-2">Workshop on Advanced Laser Diagnostics</h3>
+                           <p class="text-gray-400">Our lab will be hosting a week-long workshop. Stay tuned for registration details.</p>
                        </div>
                     </div>
-                    <!-- UPDATED ITEM 3 (Saloni & Prashant) with Photo -->
-                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
+
+                    <!-- NEW PLACEHOLDER PODCAST (Category: podcasts) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item hidden" data-category="podcasts">
+                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 20, 2025</div>
+                       <div class="flex-1">
+                           <h3 class="text-xl font-bold mb-2">Podcast: Dr. Mishra on "The Future of Imaging"</h3>
+                           <p class="text-gray-400">Listen to Dr. Mishra discuss the lab's latest research on the "Science Unlocked" podcast. <a href="#" class="text-cyan-400 hover:underline">Listen here</a>.</p>
+                       </div>
+                    </div>
+
+                    <!-- ITEM 4: Saloni & Prashant (Category: all) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
                         <!-- Image -->
-                        <img src="https://placehold.co/600x400/18181b/9ca3af?text=Saloni+&+Prashant" alt="Saloni Sarda and Prashant Chitranshi" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Saloni+&+Prashant'">
-                        <!-- Content -->
-                        <div class="flex flex-col flex-1">
-                            <div class="w-full text-cyan-400 font-semibold mb-2">Jul 24, 2025</div>
+                        <img src="https://placehold.co/600x400/18181b/9ca3af?text=Saloni+&+Prashant" alt="Saloni Sarda and Prashant Chitranshi" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg flex-shrink-0" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Saloni+&+Prashant'">
+                        <!-- Content Block -->
+                        <div class="flex-1 flex flex-col md:flex-row gap-6">
+                            <!-- Date on side -->
+                            <div class="w-full md:w-40 text-cyan-400 font-semibold">Jul 24, 2025</div>
+                            <!-- Text -->
                             <div class="flex-1">
                                 <h3 class="text-xl font-bold mb-2">Welcoming new PhD scholars Saloni & Prashant to the group!</h3>
                                 <p class="text-gray-400">We are excited to have them join our ongoing research in biomedical imaging and laser diagnostics.</p>
                             </div>
                         </div>
                     </div>
-                    <!-- UPDATED item for Akshika with Photo -->
-                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6">
+                    <!-- ITEM 5: Akshika (Category: all) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
                         <!-- Image -->
-                        <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
-                        <!-- Content -->
-                        <div class="flex flex-col flex-1">
-                            <div class="w-full text-cyan-400 font-semibold mb-2">Jan 02, 2024</div>
+                        <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-full md:w-40 h-48 md:h-32 object-cover rounded-lg flex-shrink-0" onerror="this.src='https://placehold.co/600x400/18181b/9ca3af?text=Akshika+Mishra'">
+                        <!-- Content Block -->
+                        <div class="flex-1 flex flex-col md:flex-row gap-6">
+                             <!-- Date on side -->
+                            <div class="w-full md:w-40 text-cyan-400 font-semibold">Jan 02, 2024</div>
+                            <!-- Text -->
                             <div class="flex-1">
                                 <h3 class="text-xl font-bold mb-2">Welcoming PhD scholar Akshika Mishra to the group!</h3>
                                 <p class="text-gray-400">We are excited to have her join our team.</p>
@@ -646,7 +689,7 @@
                         <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:eq2jaN3J8jMC" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.s5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
@@ -862,6 +905,35 @@
             // --- Initial Page Load Logic ---
             const initialPageId = window.location.hash.substring(1) || 'home';
             showPage(initialPageId);
+
+            // --- News Filtering Logic ---
+            const filterButtons = document.querySelectorAll('.btn-news-filter');
+            const newsContainer = document.getElementById('news-container');
+
+            if (filterButtons.length > 0 && newsContainer) {
+                const newsItems = newsContainer.querySelectorAll('.news-item');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const filter = button.getAttribute('data-filter');
+
+                        // Update button active state
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+
+                        // Filter news items
+                        newsItems.forEach(item => {
+                            const category = item.getAttribute('data-category');
+                            if (filter === 'all' || category === filter) {
+                                item.classList.remove('hidden');
+                            } else {
+                                item.classList.add('hidden');
+                            }
+                        });
+                    });
+                });
+            }
+            // --- End of News Filtering Logic ---
         });
     </script>
 </body>

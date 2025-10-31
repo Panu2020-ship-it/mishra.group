@@ -18,7 +18,7 @@
             --text-primary: #e5e7eb; /* light gray */
             --text-secondary: #9ca3af; /* medium gray */
             --accent-color: #00bfff; /* cyan blue */
-            --border-color: #2727a; /* dark gray for borders */
+            --border-color: #27272a; /* dark gray for borders (FIXED) */
             --card-bg: #18181b; /* slightly lighter black for cards */
         }
 
@@ -62,6 +62,23 @@
         .nav-link.active {
             color: var(--accent-color);
         }
+
+        /* --- NEW: Logo Text Animation --- */
+        .logo-text-animated {
+            background: linear-gradient(90deg, var(--text-primary), var(--accent-color), var(--text-primary));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-flow 5s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* --- End Logo Animation --- */
 
         /* Hero Section */
         .hero-section {
@@ -241,6 +258,64 @@
             color: var(--bg-color);
             border-color: var(--accent-color);
         }
+
+        /* --- Gallery Carousel Styles --- */
+        #gallery-scene {
+            width: 100%;
+            max-width: 400px; /* Set a max-width for the 3D object */
+            height: 300px;
+            margin: 2rem auto;
+            perspective: 1200px; /* How "3D" it looks */
+        }
+
+        #gallery-carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            transform: translateZ(-300px); /* Move the whole carousel back */
+        }
+
+        .gallery-panel {
+            position: absolute;
+            width: 320px; /* Width of each image panel */
+            height: 200px;
+            left: 10%; /* Center it (approx) */
+            top: 20px;
+            overflow: hidden;
+            border-radius: 0.75rem; /* 12px */
+            border: 2px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+
+        .gallery-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-panel:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Manually position 5 panels in a 3D ring */
+        /* (360 / 5 panels = 72 degrees per panel) */
+        /* We use translateZ to push them out from the center */
+        .gallery-panel:nth-child(1) { transform: rotateY(0deg) translateZ(350px); }
+        .gallery-panel:nth-child(2) { transform: rotateY(72deg) translateZ(350px); }
+        .gallery-panel:nth-child(3) { transform: rotateY(144deg) translateZ(350px); }
+        .gallery-panel:nth-child(4) { transform: rotateY(216deg) translateZ(350px); }
+        .gallery-panel:nth-child(5) { transform: rotateY(288deg) translateZ(350px); }
+        
+        @media (max-width: 640px) {
+            #gallery-scene {
+                height: 250px;
+                transform: scale(0.8); /* Scale down on mobile */
+                margin-top: -2rem;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -248,9 +323,12 @@
     <header id="header" class="navbar-sticky fixed top-0 left-0 right-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center justify-between">
-              <a href="#home" class="page-link flex items-center gap-3"> <!-- Added link and gap -->
-                <img src="logo.png" alt="Mishra Lab Logo" class="w-10 h-10 rounded-md border border-cyan-500">
-                <span class="text-xl font-bold">AISL Lab</span> <!-- Made text bigger -->
+              <!-- UPDATED: Added 'group' and transition classes for animation -->
+              <a href="#home" class="page-link flex items-center gap-3 group transition-all duration-300 ease-in-out hover:scale-105">
+                <!-- UPDATED: Added spin-on-hover animation -->
+                <img src="logo.png" alt="Mishra Lab Logo" class="w-10 h-10 rounded-md border border-cyan-500 transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]" onerror="this.src='https://placehold.co/40x40/0a0a0a/00bfff?text=L'">
+                <!-- UPDATED: Added logo-text-animated class -->
+                <span class="text-xl font-bold logo-text-animated">AISL Lab</span>
               </a>
 
                 <div class="hidden md:flex items-center space-x-8">
@@ -435,7 +513,7 @@
                 <section>
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">Lab Head</h2>
                      <div class="info-card rounded-lg p-6 flex flex-col md:flex-row items-center gap-8">
-                         <img src="head.jpeg" alt="Dr. Yogeshwar Nath Mishra" class="w-36 h-36 rounded-full object-cover border-2 border-cyan-500">
+                         <img src="head.jpeg" alt="Dr. Yogeshwar Nath Mishra" class="w-36 h-36 rounded-full object-cover border-2 border-cyan-500" onerror="this.src='https://placehold.co/144x144/18181b/9ca3af?text=Dr.+Mishra'">
                          <div class="text-center md:text-left">
                              <h3 class="text-2xl font-bold">Dr. Yogeshwar Nath Mishra</h3>
                              <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
@@ -444,21 +522,33 @@
                     </div>
                 </section>
                 
+                <!-- NEW: Post-Doctoral Fellows Section -->
+                <section class="mt-12">
+                    <h2 class="text-2xl font-bold text-cyan-400 mb-6">Post-Doctoral Fellows</h2>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="info-card text-center p-6 rounded-lg">
+                            <img src="https://placehold.co/112x112/18181b/9ca3af?text=Postdoc" alt="Dr. Jane Doe" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
+                            <h4 class="text-xl font-bold">Dr. Jane Doe</h4>
+                            <p class="text-cyan-400">Post-Doctoral Fellow</p>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="mt-12">
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">PhD Scholars</h2>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="info-card text-center p-6 rounded-lg">
-                            <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Akshika'">
+                            <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Akshika'">
                             <h4 class="text-xl font-bold">Akshika Mishra</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
                         </div>
                         <div class="info-card text-center p-6 rounded-lg">
-                            <img src="salonisarda.jpg" alt="Saloni Sarda" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Saloni'">
+                            <img src="salonisarda.jpg" alt="Saloni Sarda" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Saloni'">
                             <h4 class="text-xl font-bold">Saloni Sarda</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
                         </div>
                          <div class="info-card text-center p-6 rounded-lg">
-                            <img src="Prashant.jpg" alt="Prashant Chitranshi" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Prashant'">
+                            <img src="Prashant.jpg" alt="Prashant Chitranshi" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Prashant'">
                             <h4 class="text-xl font-bold">Prashant Chitranshi</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
                         </div>
@@ -469,8 +559,21 @@
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">Intern</h2>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="info-card text-center p-6 rounded-lg">
-                            <img src="pranilpatil.tech.png" alt="Pranil Patil" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/200x200/18181b/9ca3af?text=Pranil'">
+                            <img src="pranilpatil.tech.png" alt="Pranil Patil" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Pranil'">
                             <h4 class="text-xl font-bold">Pranil Patil</h4>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEW: Lab Alumni Section -->
+                <section class="mt-12">
+                    <h2 class="text-2xl font-bold text-cyan-400 mb-6">Lab Alumni</h2>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="info-card text-center p-6 rounded-lg">
+                            <img src="https://placehold.co/112x112/18181b/9ca3af?text=Alumni" alt="Alumni Name" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
+                            <h4 class="text-xl font-bold">Dr. John Smith</h4>
+                            <p class="text-cyan-400">PhD (2020-2024)</p>
+                            <p class="text-gray-400 text-sm mt-1">Now at: Post-Doc, XYZ University</p>
                         </div>
                     </div>
                 </section>
@@ -653,7 +756,7 @@
                             <p class="venue">2025</p> <!-- Venue was missing, added year -->
                         </div>
                         <div class="action-button">
-                            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:JQOojiI6XY0C" target="_blank" class="view-paper-btn">
+                            <a href="httpsias://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:JQOojiI6XY0C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
@@ -739,13 +842,28 @@
 
             <div id="gallery-page" class="page-content hidden">
                  <h1 class="text-4xl font-bold section-heading mb-12">Gallery</h1>
-                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                     <div class="overflow-hidden rounded-lg"><img src="https::/placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                     <div class="overflow-hidden rounded-lg"><img src="https::/placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
-                     <div class="overflow-hidden rounded-lg"><img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                 
+                 <!-- New 3D Carousel -->
+                 <div id="gallery-scene">
+                    <div id="gallery-carousel">
+                        <div class="gallery-panel">
+                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup">
+                        </div>
+                        <div class="gallery-panel">
+                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo">
+                        </div>
+                        <div class="gallery-panel">
+                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image">
+                        </div>
+                        <div class="gallery-panel">
+                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam">
+                        </div>
+                        <div class="gallery-panel">
+                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation">
+                        </div>
+                    </div>
                  </div>
+                 <!-- End of 3D Carousel -->
             </div>
 
             <div id="contact-page" class="page-content hidden">
@@ -790,6 +908,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
+                    <!-- UPDATED: Footer Title -->
                     <h4 class="text-lg font-bold">AISL Research Group</h4>
                     <p class="text-sm text-gray-400 mt-2">IIT Jodhpur, Department of Physics</p>
                 </div>
@@ -814,7 +933,8 @@
                 </div>
             </div>
              <div class="text-center text-sm text-gray-500 mt-8 border-t border-gray-800 pt-6">
-                 <p>&copy; 2026 Mishra Research Group, IIT Jodhpur. All Rights Reserved.</p>
+                 <!-- UPDATED: Copyright Year and Name -->
+                 <p>&copy; 2026 AISL Research Group, IIT Jodhpur. All Rights Reserved.</p>
              </div>
         </div>
     </footer>
@@ -934,6 +1054,24 @@
                 });
             }
             // --- End of News Filtering Logic ---
+            
+            // --- 3D Gallery Carousel Logic ---
+            const carousel = document.getElementById('gallery-carousel');
+            if (carousel) {
+                const panels = document.querySelectorAll('.gallery-panel');
+                const panelCount = panels.length;
+                if (panelCount > 0) {
+                    const panelAngle = 360 / panelCount; // e.g., 72deg for 5 panels
+                    let currentRotation = 0;
+                    
+                    // Auto-rotate every 4 seconds
+                    setInterval(() => {
+                        currentRotation -= panelAngle; // Rotate to the next panel
+                        carousel.style.transform = `translateZ(-300px) rotateY(${currentRotation}deg)`;
+                    }, 4000); // 4 seconds
+                }
+            }
+            // --- End of 3D Gallery Logic ---
         });
     </script>
 </body>

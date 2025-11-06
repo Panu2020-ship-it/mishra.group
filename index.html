@@ -7,6 +7,9 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- ADDED: Particles.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,6 +32,20 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+
+        /* --- ADDED: 3D Particle Background Styling --- */
+        #particles-js {
+            position: fixed; /* Keep behind everything */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            /* Use the same background color to blend seamlessly */
+            background-color: var(--bg-color); 
+            z-index: 0; /* Base layer */
+        }
+        /* --- End Particle Style --- */
+
 
         /* Navbar Styling */
         .navbar-sticky {
@@ -107,14 +124,17 @@
         
         /* Button Styles */
         .btn-primary {
-            background-color: var(--accent-color);
+            background-image: linear-gradient(to right, var(--accent-color) 0%, #00a0d9 51%, var(--accent-color) 100%);
+            background-size: 200% auto;
             color: var(--bg-color);
             font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.1);
+            transition: all 0.4s ease-out;
         }
         .btn-primary:hover {
-            background-color: #00a0d9; /* slightly darker cyan */
+            background-position: right center; /* change the direction of the change here */
             transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.25);
         }
         
         .btn-secondary {
@@ -122,11 +142,14 @@
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
             font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 191, 255, 0.1);
         }
         .btn-secondary:hover {
             background-color: var(--accent-color);
             color: var(--bg-color);
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         /* Content Pages */
@@ -211,11 +234,13 @@
             background-color: transparent;
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added transform and shadow */
         }
         .view-paper-btn:hover {
             background-color: var(--accent-color);
             color: var(--bg-color);
+            transform: translateY(-2px); /* Added lift effect */
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2); /* Added glow */
         }
         .view-paper-btn svg {
             width: 1rem; /* 16px */
@@ -257,6 +282,8 @@
             background-color: var(--accent-color);
             color: var(--bg-color);
             border-color: var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2); /* Added glow for active */
+            transform: scale(1.03); /* Added pop effect */
         }
 
         /* --- Gallery Carousel Styles --- */
@@ -320,16 +347,19 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
+    <!-- ADDED: Particle background container -->
+    <div id="particles-js"></div>
+
     <header id="header" class="navbar-sticky fixed top-0 left-0 right-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center justify-between">
-              <!-- UPDATED: Added 'group' and transition classes for animation -->
-              <a href="#home" class="page-link flex items-center gap-3 group transition-all duration-300 ease-in-out hover:scale-105">
-                <!-- UPDATED: Added spin-on-hover animation -->
-                <img src="logo.png" alt="Mishra Lab Logo" class="w-10 h-10 rounded-md border border-cyan-500 transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]" onerror="this.src='https://placehold.co/40x40/0a0a0a/00bfff?text=L'">
-                <!-- UPDATED: Added logo-text-animated class -->
-                <span class="text-xl font-bold logo-text-animated">ISL Lab</span>
-              </a>
+                <!-- UPDATED: Added 'group' and transition classes for animation -->
+                <a href="#home" class="page-link flex items-center gap-3 group transition-all duration-300 ease-in-out hover:scale-105">
+                    <!-- UPDATED: Added spin-on-hover animation -->
+                    <img src="logo.png" alt="Mishra Lab Logo" class="w-10 h-10 rounded-md border border-cyan-500 transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]" onerror="this.src='https://placehold.co/40x40/0a0a0a/00bfff?text=L'">
+                    <!-- UPDATED: Added logo-text-animated class -->
+                    <span class="text-xl font-bold logo-text-animated">ISL Lab</span>
+                </a>
 
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link page-link active">Home</a>
@@ -377,7 +407,8 @@
         </div>
     </header>
 
-    <main id="main-content" class="flex-grow pt-20">
+    <!-- MODIFIED: Added position:relative and z-index:1 -->
+    <main id="main-content" class="flex-grow pt-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
             <div id="home-page" class="page-content">
@@ -449,29 +480,29 @@
                     </div>
                      <!-- ITEM 3: Flow-blurring paper (Category: all) -->
                      <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
-                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Sep 15, 2025</div>
-                       <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Our paper on flow-blurring sprays is published in Optics Express.</h3>
-                           <p class="text-gray-400">Congratulations to the team for their hard work on developing novel planar laser-based measurements.</p>
-                       </div>
-                    </div>
+                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Sep 15, 2025</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-2">Our paper on flow-blurring sprays is published in Optics Express.</h3>
+                            <p class="text-gray-400">Congratulations to the team for their hard work on developing novel planar laser-based measurements.</p>
+                        </div>
+                     </div>
                     
                     <!-- NEW PLACEHOLDER WORKSHOP (Category: workshops) -->
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item hidden" data-category="workshops">
-                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Dec 01, 2025</div>
-                       <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Workshop on Advanced Laser Diagnostics</h3>
-                           <p class="text-gray-400">Our lab will be hosting a week-long workshop. Stay tuned for registration details.</p>
-                       </div>
+                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Dec 01, 2025</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-2">Workshop on Advanced Laser Diagnostics</h3>
+                            <p class="text-gray-400">Our lab will be hosting a week-long workshop. Stay tuned for registration details.</p>
+                        </div>
                     </div>
 
                     <!-- NEW PLACEHOLDER PODCAST (Category: podcasts) -->
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item hidden" data-category="podcasts">
-                       <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 20, 2025</div>
-                       <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Podcast: Dr. Mishra on "The Future of Imaging"</h3>
-                           <p class="text-gray-400">Listen to Dr. Mishra discuss the lab's latest research on the "Science Unlocked" podcast. <a href="#" class="text-cyan-400 hover:underline">Listen here</a>.</p>
-                       </div>
+                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 20, 2025</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-2">Podcast: Dr. Mishra on "The Future of Imaging"</h3>
+                            <p class="text-gray-400">Listen to Dr. Mishra discuss the lab's latest research on the "Science Unlocked" podcast. <a href="#" class="text-cyan-400 hover:underline">Listen here</a>.</p>
+                        </div>
                     </div>
 
                     <!-- ITEM 4: Saloni & Prashant (Category: all) -->
@@ -519,7 +550,7 @@
                              <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
                              <p class="text-gray-400 max-w-2xl">Ex-NASA/Caltech researcher with a PhD from Lund University, specializing in laser diagnostics, ultrafast phenomena, and AI-driven imaging. Recipient of the PETRA Award for young researchers.</p>
                          </div>
-                    </div>
+                     </div>
                 </section>
                 
                 <!-- NEW: Post-Doctoral Fellows Section -->
@@ -582,21 +613,21 @@
         <div id="research-projects-page" class="page-content hidden">
                  <h1 class="text-4xl font-bold section-heading mb-12">Ongoing Projects</h1>
                  <div class="grid lg:grid-cols-3 gap-8">
-                      <div class="info-card p-6 rounded-lg">
-                          <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-300 mb-3">Sustainable Tech</span>
-                          <h3 class="text-xl font-bold text-cyan-400 mb-2">Next-Gen Optical Tech for Energy</h3>
-                          <p class="text-gray-400">Developing cost-effective optical systems to analyze and optimize advanced solar cells and hydrogen fuel production.</p>
-                      </div>
-                      <div class="info-card p-6 rounded-lg">
-                          <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-red-900 text-red-300 mb-3">Ultrafast Imaging</span>
-                          <h3 class="text-xl font-bold text-cyan-400 mb-2">Femtosecond Spectroscopy</h3>
-                          <p class="text-gray-400">Capturing dynamic changes in materials at picosecond and femtosecond scales using pump-probe techniques.</p>
-                      </div>
-                      <div class="info-card p-6 rounded-lg">
-                          <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-900 text-blue-300 mb-3">AI & Healthcare</span>
-                          <h3 class="text-xl font-bold text-cyan-400 mb-2">AI-Powered Microfluidic Diagnostics</h3>
-                          <p class="text-gray-400">Integrating deep neural networks with microfluidic chips for rapid, automated disease detection.</p>
-                      </div>
+                     <div class="info-card p-6 rounded-lg">
+                         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-300 mb-3">Sustainable Tech</span>
+                         <h3 class="text-xl font-bold text-cyan-400 mb-2">Next-Gen Optical Tech for Energy</h3>
+                         <p class="text-gray-400">Developing cost-effective optical systems to analyze and optimize advanced solar cells and hydrogen fuel production.</p>
+                     </div>
+                     <div class="info-card p-6 rounded-lg">
+                         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-red-900 text-red-300 mb-3">Ultrafast Imaging</span>
+                         <h3 class="text-xl font-bold text-cyan-400 mb-2">Femtosecond Spectroscopy</h3>
+                         <p class="text-gray-400">Capturing dynamic changes in materials at picosecond and femtosecond scales using pump-probe techniques.</p>
+                     </div>
+                     <div class="info-card p-6 rounded-lg">
+                         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-900 text-blue-300 mb-3">AI & Healthcare</span>
+                         <h3 class="text-xl font-bold text-cyan-400 mb-2">AI-Powered Microfluidic Diagnostics</h3>
+                         <p class="text-gray-400">Integrating deep neural networks with microfluidic chips for rapid, automated disease detection.</p>
+                     </div>
                  </div>
             </div>
 
@@ -748,7 +779,7 @@
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                                <img src="publication7.jpg" alt="Thumbnail for flow-blurring sprays paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                             <img src="publication7.jpg" alt="Thumbnail for flow-blurring sprays paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">High-Speed Fourier Ptychographic Microscopy System for Live Microorganisms Imaging</p>
@@ -758,14 +789,14 @@
                         <div class="action-button">
                             <a href="httpsias://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:JQOojiI6XY0C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
 
                     <div class="publication-item">
                         <div class="thumbnail">
-                                <img src="publication8.jpg" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                             <img src="publication8.jpg" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Impact of polarization and detection angle on Mie scattering signals for planar droplet sizing</p>
@@ -775,27 +806,27 @@
                         <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:ye4kPcJQO24C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
                     
-                    <div class="publication-item">
-                        <div class="thumbnail">
-                                <img src="publication9.png" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
-                        </div>
-                        <div class="details">
-                            <p class="title">Latent Space Imaging</p>
-                            <p class="authors">M Souza, Y Zheng, K Kang, YN Mishra, Q Fu, W Heidrich</p>
-                            <p class="venue"><em>Proceedings of the Computer Vision and Pattern Recognition Conference, 28295 …</em>, 2025</p>
-                        </div>
-                        <div class="action-button">
-                            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:eq2jaN3J8jMC" target="_blank" class="view-paper-btn">
-                                <span>View Paper</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.s5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
-                            </a>
-                        </div>
-                    </div>
+                     <div class="publication-item">
+                         <div class="thumbnail">
+                             <img src="publication9.png" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                         </div>
+                         <div class="details">
+                             <p class="title">Latent Space Imaging</p>
+                             <p class="authors">M Souza, Y Zheng, K Kang, YN Mishra, Q Fu, W Heidrich</p>
+                             <p class="venue"><em>Proceedings of the Computer Vision and Pattern Recognition Conference, 28295 …</em>, 2025</p>
+                         </div>
+                         <div class="action-button">
+                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:eq2jaN3J8jMC" target="_blank" class="view-paper-btn">
+                                 <span>View Paper</span>
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.s5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                             </a>
+                         </div>
+                     </div>
 
                 </div>
             </div>
@@ -904,7 +935,8 @@
         </div>
     </main>
 
-    <footer class="bg-black border-t border-gray-800 mt-16">
+    <!-- MODIFIED: Added position:relative and z-index:1 -->
+    <footer class="bg-black border-t border-gray-800 mt-16 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
@@ -941,6 +973,66 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 3D Particle Background Config ---
+            // (Adapted from old site for the new dark theme)
+            const PARTICLE_CONFIG = {
+                particles: {
+                    number: {
+                        value: 80, // Kept from old config
+                        density: { enable: true, value_area: 800 }
+                    },
+                    color: {
+                        // MODIFIED: Changed from dark '#2c3e50' to a subtle light gray
+                        value: '#4a4a4f' 
+                    },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.4, random: false }, // Slightly more subtle
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        // MODIFIED: Changed from dark '#2c3e50' to match particles
+                        color: '#4a4a4f', 
+                        opacity: 0.2, // More subtle lines
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2, // Kept from old config
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: { enable: true, mode: 'grab' },
+                        onclick: { enable: true, mode: 'push' },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 140,
+                            line_linked: { opacity: 0.5 } // Slightly more visible on grab
+                        },
+                        push: { particles_nb: 4 }
+                    }
+                },
+                retina_detect: true
+            };
+
+            // Initialize particles.js
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', PARTICLE_CONFIG);
+            }
+            // --- End of Particle Config ---
+
+
+            // --- Original Site JS ---
             // Element selectors
             const pageLinks = document.querySelectorAll('.page-link');
             const pages = document.querySelectorAll('.page-content');
@@ -951,26 +1043,32 @@
             const researchMenu = document.getElementById('researchMenu');
 
             // --- Research Dropdown Toggle (from your new code) ---
-            researchBtn.addEventListener('click', (e) => {
-                // Prevent this click from being caught by the document click listener below
-                e.stopPropagation(); 
-                researchMenu.classList.toggle('opacity-0');
-                researchMenu.classList.toggle('pointer-events-none');
-                researchMenu.classList.toggle('-translate-y-2');
-                researchMenu.classList.toggle('translate-y-0');
-            });
+            if (researchBtn) {
+                researchBtn.addEventListener('click', (e) => {
+                    // Prevent this click from being caught by the document click listener below
+                    e.stopPropagation(); 
+                    researchMenu.classList.toggle('opacity-0');
+                    researchMenu.classList.toggle('pointer-events-none');
+                    researchMenu.classList.toggle('-translate-y-2');
+                    researchMenu.classList.toggle('translate-y-0');
+                });
+            }
             
             // --- Close dropdown when clicking outside ---
             document.addEventListener('click', () => {
-                researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
-                researchMenu.classList.remove('translate-y-0');
+                if (researchMenu && !researchMenu.classList.contains('pointer-events-none')) {
+                    researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                    researchMenu.classList.remove('translate-y-0');
+                }
             });
 
 
             // --- Mobile Menu Toggle ---
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
 
             // --- Page Navigation Logic ---
             const showPage = (pageId) => {
@@ -985,22 +1083,37 @@
                     targetPage.classList.remove('hidden');
                 } else {
                     // Fallback to home if page not found
-                    document.getElementById('home-page').classList.remove('hidden');
+                    const homePage = document.getElementById('home-page');
+                    if (homePage) {
+                         homePage.classList.remove('hidden');
+                    }
                 }
                 
                 // Update URL hash
-                window.location.hash = pageId;
+                // Only update hash if it's not the default home to avoid '#'
+                if (pageId === 'home') {
+                    history.pushState(null, null, ' ');
+                } else {
+                    window.location.hash = pageId;
+                }
 
                 // Update active nav link
                 updateActiveLink(pageId);
                 
                 // Close mobile menu and research dropdown on navigation
-                mobileMenu.classList.add('hidden');
-                researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
-                researchMenu.classList.remove('translate-y-0');
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
+                if (researchMenu) {
+                    researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                    researchMenu.classList.remove('translate-y-0');
+                }
 
                 // Scroll to top of content
-                document.getElementById('main-content').scrollIntoView();
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.scrollIntoView();
+                }
             };
             
             const updateActiveLink = (pageId) => {
@@ -1076,4 +1189,4 @@
     </script>
 </body>
 </html>
-
+       

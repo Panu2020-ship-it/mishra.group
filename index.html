@@ -526,7 +526,26 @@
 
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link page-link active">Home</a>
-                    <a href="#news" class="nav-link page-link">News</a>
+                    
+                    <!-- MODIFIED: News is now a dropdown and includes Gallery -->
+                    <div class="relative dropdown group">
+                        <button id="newsBtn" class="nav-link flex items-center">
+                            News & Events
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="newsMenu" class="dropdown-menu absolute left-0 mt-2 w-48 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 transform -translate-y-2 pointer-events-none z-50 transition-all duration-200">
+                            <a href="#news" data-filter="all" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">All News</a>
+                            <a href="#news" data-filter="events" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Upcoming Events</a>
+                            <a href="#news" data-filter="workshops" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Workshops</a>
+                            <a href="#news" data-filter="podcasts" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Podcasts</a>
+                            <hr class="border-gray-700 my-1">
+                            <!-- GALLERY ADDED TO NEWS DROPDOWN -->
+                            <a href="#gallery" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-cyan-400 page-link">Gallery</a>
+                        </div>
+                    </div>
+
                     <a href="#people" class="nav-link page-link">People</a>
                     
                     <div class="relative dropdown group">
@@ -546,7 +565,7 @@
                     <a href="#publications" class="nav-link page-link">Publications</a>
                     <a href="#teaching" class="nav-link page-link">Teaching</a>
                     <a href="#positions" class="nav-link page-link">Positions</a>
-                    <a href="#gallery" class="nav-link page-link">Gallery</a>
+                    <!-- REMOVED STANDALONE GALLERY LINK -->
                     <a href="#contact" class="nav-link page-link">Contact</a>
                 </div>
 
@@ -556,17 +575,22 @@
             </div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2">
-             <a href="#home" class="block nav-link page-link active">Home</a>
-             <a href="#news" class="block nav-link page-link">News</a>
-             <a href="#people" class="block nav-link page-link">People</a>
-             <a href="#research-collaborators" class="block nav-link page-link">Collaborators</a>
-             <a href="#research-projects" class="block nav-link page-link">Projects</a>
-             <a href="#research-facilities" class="block nav-link page-link">Facilities</a>
-             <a href="#publications" class="block nav-link page-link">Publications</a>
-             <a href="#teaching" class="block nav-link page-link">Teaching</a>
-             <a href="#positions" class="block nav-link page-link">Positions</a>
-             <a href="#gallery" class="block nav-link page-link">Gallery</a>
-             <a href="#contact" class="block nav-link page-link">Contact</a>
+               <a href="#home" class="block nav-link page-link active">Home</a>
+               <!-- News and its children grouped (with indentation) -->
+               <a href="#news" data-filter="all" class="block nav-link page-link">News</a>
+               <a href="#news" data-filter="events" class="block nav-link page-link ml-4">Upcoming Events</a>
+               <a href="#news" data-filter="workshops" class="block nav-link page-link ml-4">Workshops</a>
+               <a href="#news" data-filter="podcasts" class="block nav-link page-link ml-4">Podcasts</a>
+               <a href="#gallery" class="block nav-link page-link ml-4">Gallery</a> <!-- MOVED & INDENTED -->
+
+               <a href="#people" class="block nav-link page-link">People</a>
+               <a href="#research-collaborators" class="block nav-link page-link">Collaborators</a>
+               <a href="#research-projects" class="block nav-link page-link">Projects</a>
+               <a href="#research-facilities" class="block nav-link page-link">Facilities</a>
+               <a href="#publications" class="block nav-link page-link">Publications</a>
+               <a href="#teaching" class="block nav-link page-link">Teaching</a>
+               <a href="#positions" class="block nav-link page-link">Positions</a>
+               <a href="#contact" class="block nav-link page-link">Contact</a>
         </div>
     </header>
 
@@ -589,27 +613,27 @@
                     </p>
                 </section>
                 
-                 <section class="mt-16">
-                    <h2 class="text-3xl md:text-4xl font-bold section-heading mb-8 text-center">Core Research Areas</h2>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <div class="info-card p-6 rounded-lg">
-                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Laser Diagnostics</h3>
-                            <p class="text-gray-400">Advanced non-intrusive measurements for energy systems, combustion, and fuel cells.</p>
+                    <section class="mt-16">
+                        <h2 class="text-3xl md:text-4xl font-bold section-heading mb-8 text-center">Core Research Areas</h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="info-card p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Laser Diagnostics</h3>
+                                <p class="text-gray-400">Advanced non-intrusive measurements for energy systems, combustion, and fuel cells.</p>
+                            </div>
+                            <div class="info-card p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Ultrafast Science</h3>
+                                <p class="text-gray-400">Investigating light-matter interactions on femtosecond and picosecond timescales.</p>
+                            </div>
+                            <div class="info-card p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Space Science & Optics</h3>
+                                <p class="text-gray-400">Developing adaptive optics and hyperspectral imaging for space applications.</p>
+                            </div>
+                            <div class="info-card p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Biomedical Imaging & AI</h3>
+                                <p class="text-gray-400">Creating lab-on-chip diagnostics using microscopy and deep learning.</p>
+                            </div>
                         </div>
-                        <div class="info-card p-6 rounded-lg">
-                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Ultrafast Science</h3>
-                            <p class="text-gray-400">Investigating light-matter interactions on femtosecond and picosecond timescales.</p>
-                        </div>
-                        <div class="info-card p-6 rounded-lg">
-                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Space Science & Optics</h3>
-                            <p class="text-gray-400">Developing adaptive optics and hyperspectral imaging for space applications.</p>
-                        </div>
-                        <div class="info-card p-6 rounded-lg">
-                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Biomedical Imaging & AI</h3>
-                            <p class="text-gray-400">Creating lab-on-chip diagnostics using microscopy and deep learning.</p>
-                        </div>
-                    </div>
-                </section>
+                    </section>
             </div>
 
             <div id="news-page" class="page-content hidden">
@@ -629,33 +653,33 @@
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 05, 2025</div>
                        <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Dr. Mishra reports CUP2AI, the world's fastest molecular mapping technique.</h3>
-                           <p class="text-gray-400">Our lab's latest work on CUP2AI has been recognized as the fastest single-shot wide-field molecular mapping technique. The research has been featured in Physics World, Phys.org, and Nature India.</p>
+                            <h3 class="text-xl font-bold mb-2">Dr. Mishra reports CUP2AI, the world's fastest molecular mapping technique.</h3>
+                            <p class="text-gray-400">Our lab's latest work on CUP2AI has been recognized as the fastest single-shot wide-field molecular mapping technique. The research has been featured in Physics World, Phys.org, and Nature India.</p>
                        </div>
                     </div>
                     <!-- ITEM 2: SPIE Keynote (Category: events) -->
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="events">
                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Oct 10, 2025</div>
                        <div class="flex-1">
-                           <h3 class="text-xl font-bold mb-2">Dr. Mishra to deliver a keynote at SPIE Optics + Photonics 2026.</h3>
-                           <p class="text-gray-400">The talk will focus on recent advancements in high-throughput space-time Fourier ptychography.</p>
+                            <h3 class="text-xl font-bold mb-2">Dr. Mishra to deliver a keynote at SPIE Optics + Photonics 2026.</h3>
+                            <p class="text-gray-400">The talk will focus on recent advancements in high-throughput space-time Fourier ptychography.</p>
                        </div>
                     </div>
-                     <!-- ITEM 3: Flow-blurring paper (Category: all) -->
-                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
-                         <div class="w-full md:w-40 text-cyan-400 font-semibold">Sep 15, 2025</div>
-                         <div class="flex-1">
-                             <h3 class="text-xl font-bold mb-2">Our paper on flow-blurring sprays is published in Optics Express.</h3>
-                             <p class="text-gray-400">Congratulations to the team for their hard work on developing novel planar laser-based measurements.</p>
-                         </div>
-                      </div>
+                    <!-- ITEM 3: Flow-blurring paper (Category: all) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item" data-category="all">
+                        <div class="w-full md:w-40 text-cyan-400 font-semibold">Sep 15, 2025</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-2">Our paper on flow-blurring sprays is published in Optics Express.</h3>
+                            <p class="text-gray-400">Congratulations to the team for their hard work on developing novel planar laser-based measurements.</p>
+                        </div>
+                    </div>
                     
                     <!-- NEW PLACEHOLDER WORKSHOP (Category: workshops) -->
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item hidden" data-category="workshops">
                          <div class="w-full md:w-40 text-cyan-400 font-semibold">Dec 01, 2025</div>
                          <div class="flex-1">
-                             <h3 class="text-xl font-bold mb-2">Workshop on Advanced Laser Diagnostics</h3>
-                             <p class="text-gray-400">Our lab will be hosting a week-long workshop. Stay tuned for registration details.</p>
+                            <h3 class="text-xl font-bold mb-2">Workshop on Advanced Laser Diagnostics</h3>
+                            <p class="text-gray-400">Our lab will be hosting a week-long workshop. Stay tuned for registration details.</p>
                          </div>
                     </div>
 
@@ -663,8 +687,8 @@
                     <div class="info-card p-6 rounded-lg flex flex-col md:flex-row gap-6 news-item hidden" data-category="podcasts">
                          <div class="w-full md:w-40 text-cyan-400 font-semibold">Nov 20, 2025</div>
                          <div class="flex-1">
-                             <h3 class="text-xl font-bold mb-2">Podcast: Dr. Mishra on "The Future of Imaging"</h3>
-                             <p class="text-gray-400">Listen to Dr. Mishra discuss the lab's latest research on the "Science Unlocked" podcast. <a href="#" class="text-cyan-400 hover:underline">Listen here</a>.</p>
+                            <h3 class="text-xl font-bold mb-2">Podcast: Dr. Mishra on "The Future of Imaging"</h3>
+                            <p class="text-gray-400">Listen to Dr. Mishra discuss the lab's latest research on the "Science Unlocked" podcast. <a href="#" class="text-cyan-400 hover:underline">Listen here</a>.</p>
                          </div>
                     </div>
 
@@ -707,13 +731,13 @@
                 <section>
                     <h2 class="text-2xl font-bold text-cyan-400 mb-6">Lab Head</h2>
                      <div class="info-card rounded-lg p-6 flex flex-col md:flex-row items-center gap-8">
-                         <img src="head.jpeg" alt="Dr. Yogeshwar Nath Mishra" class="w-36 h-36 rounded-full object-cover border-2 border-cyan-500" onerror="this.src='https://placehold.co/144x144/18181b/9ca3af?text=Dr.+Mishra'">
-                         <div class="text-center md:text-left">
-                             <h3 class="text-2xl font-bold">Dr. Yogeshwar Nath Mishra</h3>
-                             <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
-                             <p class="text-gray-400 max-w-2xl">Ex-NASA/Caltech researcher with a PhD from Lund University, specializing in laser diagnostics, ultrafast phenomena, and AI-driven imaging. Recipient of the PETRA Award for young researchers.</p>
-                         </div>
-                     </div>
+                        <img src="head.jpeg" alt="Dr. Yogeshwar Nath Mishra" class="w-36 h-36 rounded-full object-cover border-2 border-cyan-500" onerror="this.src='https://placehold.co/144x144/18181b/9ca3af?text=Dr.+Mishra'">
+                        <div class="text-center md:text-left">
+                            <h3 class="text-2xl font-bold">Dr. Yogeshwar Nath Mishra</h3>
+                            <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
+                            <p class="text-gray-400 max-w-2xl">Ex-NASA/Caltech researcher with a PhD from Lund University, specializing in laser diagnostics, ultrafast phenomena, and AI-driven imaging. Recipient of the PETRA Award for young researchers.</p>
+                        </div>
+                    </div>
                 </section>
                 
                 <!-- NEW: Post-Doctoral Fellows Section -->
@@ -749,15 +773,15 @@
                     </div>
                 </section>
 
-                 <section class="mt-12">
-                    <h2 class="text-2xl font-bold text-cyan-400 mb-6">Intern</h2>
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="info-card text-center p-6 rounded-lg">
-                            <img src="pranilpatil.tech.png" alt="Pranil Patil" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Pranil'">
-                            <h4 class="text-xl font-bold">Pranil Patil</h4>
+                    <section class="mt-12">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-6">Intern</h2>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="info-card text-center p-6 rounded-lg">
+                                <img src="pranilpatil.tech.png" alt="Pranil Patil" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Pranil'">
+                                <h4 class="text-xl font-bold">Pranil Patil</h4>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
                 <!-- NEW: Lab Alumni Section -->
                 <section class="mt-12">
@@ -774,25 +798,25 @@
             </div>
 
         <div id="research-projects-page" class="page-content hidden">
-                 <h1 class="text-4xl font-bold section-heading mb-12">Ongoing Projects</h1>
-                 <div class="grid lg:grid-cols-3 gap-8">
-                      <div class="info-card p-6 rounded-lg">
-                         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-300 mb-3">Sustainable Tech</span>
-                         <h3 class="text-xl font-bold text-cyan-400 mb-2">Next-Gen Optical Tech for Energy</h3>
-                         <p class="text-gray-400">Developing cost-effective optical systems to analyze and optimize advanced solar cells and hydrogen fuel production.</p>
-                      </div>
-                      <div class="info-card p-6 rounded-lg">
-                         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-red-900 text-red-300 mb-3">Ultrafast Imaging</span>
-                         <h3 class="text-xl font-bold text-cyan-400 mb-2">Femtosecond Spectroscopy</h3>
-                         <p class="text-gray-400">Capturing dynamic changes in materials at picosecond and femtosecond scales using pump-probe techniques.</p>
-                      </div>
-                      <div class="info-card p-6 rounded-lg">
-                         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-900 text-blue-300 mb-3">AI & Healthcare</span>
-                         <h3 class="text-xl font-bold text-cyan-400 mb-2">AI-Powered Microfluidic Diagnostics</h3>
-                         <p class="text-gray-400">Integrating deep neural networks with microfluidic chips for rapid, automated disease detection.</p>
-                      </div>
-                 </div>
-            </div>
+                    <h1 class="text-4xl font-bold section-heading mb-12">Ongoing Projects</h1>
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <div class="info-card p-6 rounded-lg">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-300 mb-3">Sustainable Tech</span>
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Next-Gen Optical Tech for Energy</h3>
+                            <p class="text-gray-400">Developing cost-effective optical systems to analyze and optimize advanced solar cells and hydrogen fuel production.</p>
+                        </div>
+                        <div class="info-card p-6 rounded-lg">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-red-900 text-red-300 mb-3">Ultrafast Imaging</span>
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Femtosecond Spectroscopy</h3>
+                            <p class="text-gray-400">Capturing dynamic changes in materials at picosecond and femtosecond scales using pump-probe techniques.</p>
+                        </div>
+                        <div class="info-card p-6 rounded-lg">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-900 text-blue-300 mb-3">AI & Healthcare</span>
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2">AI-Powered Microfluidic Diagnostics</h3>
+                            <p class="text-gray-400">Integrating deep neural networks with microfluidic chips for rapid, automated disease detection.</p>
+                        </div>
+                    </div>
+        </div>
 
             <div id="research-facilities-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Lab Facilities</h1>
@@ -907,25 +931,25 @@
                     </div>
 
                      <div class="publication-item">
-                          <div class="thumbnail">
-                               <img src="publication5.jpg" alt="Thumbnail for nano-size mapping paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                         <div class="thumbnail">
+                                <img src="publication5.jpg" alt="Thumbnail for nano-size mapping paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                         </div>
+                         <div class="details">
+                                <p class="title">Single-shot two-dimensional nano-size mapping of fluorescent molecules by ultrafast polarization anisotropy imaging</p>
+                                <p class="authors">P Wang, YN Mishra, FJ Bauer, MS Gudipati, LV Wang</p>
+                                <p class="venue"><em>Nature Communications 16 (1), 5019</em>, 2025</p>
+                         </div>
+                         <div class="action-button">
+                                <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:1yQoGdGgb4wC" target="_blank" class="view-paper-btn">
+                                    <span>View Paper</span>
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                </a>
                           </div>
-                          <div class="details">
-                               <p class="title">Single-shot two-dimensional nano-size mapping of fluorescent molecules by ultrafast polarization anisotropy imaging</p>
-                               <p class="authors">P Wang, YN Mishra, FJ Bauer, MS Gudipati, LV Wang</p>
-                               <p class="venue"><em>Nature Communications 16 (1), 5019</em>, 2025</p>
-                          </div>
-                          <div class="action-button">
-                               <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:1yQoGdGgb4wC" target="_blank" class="view-paper-btn">
-                                   <span>View Paper</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
-                               </a>
-                          </div>
-                     </div>
-                     
+                    </div>
+                    
                     <div class="publication-item">
                         <div class="thumbnail">
-                             <img src="publication6.jpg" alt="Thumbnail for water ice paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                               <img src="publication6.jpg" alt="Thumbnail for water ice paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                         </div>
                         <div class="details">
                             <p class="title">Electron-induced chemistry and sputtering of volatile species from amorphous and crystalline water ice</p>
@@ -935,7 +959,7 @@
                         <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:N5tVd3kTz84C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
@@ -952,7 +976,7 @@
                         <div class="action-button">
                             <a href="httpsias://scholar.google.com/citations?view_op=view_citation&hl=sv&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:JQOojiI6XY0C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
@@ -969,27 +993,27 @@
                         <div class="action-button">
                             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:ye4kPcJQO24C" target="_blank" class="view-paper-btn">
                                 <span>View Paper</span>
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
                             </a>
                         </div>
                     </div>
                     
                      <div class="publication-item">
                           <div class="thumbnail">
-                               <img src="publication9.png" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
+                                <img src="publication9.png" alt="Thumbnail for Ultrafast Photography paper" onerror="this.src='https://placehold.co/128x128/18181b/9ca3af?text=Image'">
                           </div>
                           <div class="details">
-                               <p class="title">Latent Space Imaging</p>
-                               <p class="authors">M Souza, Y Zheng, K Kang, YN Mishra, Q Fu, W Heidrich</p>
-                               <p class="venue"><em>Proceedings of the Computer Vision and Pattern Recognition Conference, 28295 …</em>, 2025</p>
+                                <p class="title">Latent Space Imaging</p>
+                                <p class="authors">M Souza, Y Zheng, K Kang, YN Mishra, Q Fu, W Heidrich</p>
+                                <p class="venue"><em>Proceedings of the Computer Vision and Pattern Recognition Conference, 28295 …</em>, 2025</p>
                           </div>
                           <div class="action-button">
-                               <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:eq2jaN3J8jMC" target="_blank" class="view-paper-btn">
-                                   <span>View Paper</span>
+                                <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wvhys5YAAAAJ&sortby=pubdate&citation_for_view=wvhys5YAAAAJ:eq2jaN3J8jMC" target="_blank" class="view-paper-btn">
+                                    <span>View Paper</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.s5m-4.5 4.5L18 6m0 0v3.75m0-3.75H13.5" /></svg>
-                               </a>
+                                </a>
                           </div>
-                     </div>
+                    </div>
 
                 </div>
             </div>
@@ -1029,35 +1053,35 @@
                         </div>
                     </div>
                     <div class="mt-8">
-                         <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-md page-link">Apply Now</a>
+                            <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-md page-link">Apply Now</a>
                     </div>
                 </div>
             </div>
 
             <div id="gallery-page" class="page-content hidden">
-                 <h1 class="text-4xl font-bold section-heading mb-12">Gallery</h1>
-                 
-                 <!-- New 3D Carousel -->
-                 <div id="gallery-scene">
-                    <div id="gallery-carousel">
-                        <div class="gallery-panel">
-                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup">
-                        </div>
-                        <div class="gallery-panel">
-                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo">
-                        </div>
-                        <div class="gallery-panel">
-                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image">
-                        </div>
-                        <div class="gallery-panel">
-                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam">
-                        </div>
-                        <div class="gallery-panel">
-                            <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation">
+                    <h1 class="text-4xl font-bold section-heading mb-12">Gallery</h1>
+                    
+                    <!-- New 3D Carousel -->
+                    <div id="gallery-scene">
+                        <div id="gallery-carousel">
+                            <div class="gallery-panel">
+                                <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Lab+Setup" alt="Lab Setup">
+                            </div>
+                            <div class="gallery-panel">
+                                <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Team+Photo" alt="Team Photo">
+                            </div>
+                            <div class="gallery-panel">
+                                <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Microscope" alt="Microscope Image">
+                            </div>
+                            <div class="gallery-panel">
+                                <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Laser+Beam" alt="Laser Beam">
+                            </div>
+                            <div class="gallery-panel">
+                                <img src="https://placehold.co/400x400/0a0a0a/00bfff?text=Conference" alt="Conference Presentation">
+                            </div>
                         </div>
                     </div>
-                 </div>
-                 <!-- End of 3D Carousel -->
+                    <!-- End of 3D Carousel -->
             </div>
 
             <div id="contact-page" class="page-content hidden">
@@ -1067,20 +1091,20 @@
                         <h3 class="text-2xl font-bold text-cyan-400 mb-4">Get in Touch</h3>
                         <p class="text-gray-300 mb-6">We welcome inquiries from prospective students, potential collaborators, and industry partners. Please feel free to reach out.</p>
                          <div class="space-y-4">
-                             <div class="flex items-start gap-4">
-                                 <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                 <div>
-                                     <h4 class="font-semibold">Email</h4>
-                                     <a href="mailto:mishrayn@iitj.ac.in" class="text-gray-300 hover:text-cyan-400">mishrayn@iitj.ac.in</a>
-                                 </div>
-                             </div>
-                             <div class="flex items-start gap-4">
-                                 <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                 <div>
-                                     <h4 class="font-semibold">Address</h4>
-                                     <p class="text-gray-300">Department of Physics<br>Indian Institute of Technology Jodhpur<br>Jodhpur, Rajasthan, India - 342030</p>
-                                 </div>
-                             </div>
+                              <div class="flex items-start gap-4">
+                                  <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                  <div>
+                                       <h4 class="font-semibold">Email</h4>
+                                       <a href="mailto:mishrayn@iitj.ac.in" class="text-gray-300 hover:text-cyan-400">mishrayn@iitj.ac.in</a>
+                                  </div>
+                              </div>
+                              <div class="flex items-start gap-4">
+                                  <svg class="w-6 h-6 mt-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                  <div>
+                                       <h4 class="font-semibold">Address</h4>
+                                       <p class="text-gray-300">Department of Physics<br>Indian Institute of Technology Jodhpur<br>Jodhpur, Rajasthan, India - 342030</p>
+                                  </div>
+                              </div>
                          </div>
                     </div>
                     <div>
@@ -1150,26 +1174,26 @@
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
                     <!-- UPDATED: Footer Title -->
-                    <h4 class="text-lg font-bold">ISL Research Group</h4>
+                    <h4 class="text-lg font-bold">AISL Research Group</h4>
                     <p class="text-sm text-gray-400 mt-2">IIT Jodhpur, Department of Physics</p>
                 </div>
                  <div>
                     <h4 class="text-lg font-bold">Quick Links</h4>
                      <div class="mt-2 space-y-1">
-                         <a href="#home" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Home</a>
-                         <a href="#research-projects" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Research</a>
-                         <a href="#publications" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Publications</a>
+                          <a href="#home" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Home</a>
+                          <a href="#research-projects" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Research</a>
+                          <a href="#publications" class="block text-sm text-gray-400 hover:text-cyan-400 page-link">Publications</a>
                      </div>
                  </div>
                 <div>
                      <h4 class="text-lg font-bold">Connect</h4>
                      <div class="flex justify-center md:justify-start space-x-4 mt-2">
-                         <a href="https://scholar.google.com/citations?user=wvhys5YAAAAJ&hl=en&oi=ao" target="_blank" class="text-gray-400 hover:text-cyan-400" title="Google Scholar">
-                              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5z"></path></svg>
-                         </a>
-                         <a href="https://www.linkedin.com/in/mishrayn" target="_blank" class="text-gray-400 hover:text-cyan-400" title="LinkedIn">
-                              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                         </a>
+                          <a href="https://scholar.google.com/citations?user=wvhys5YAAAAJ&hl=en&oi=ao" target="_blank" class="text-gray-400 hover:text-cyan-400" title="Google Scholar">
+                               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5z"></path></svg>
+                          </a>
+                          <a href="https://www.linkedin.com/in/mishrayn" target="_blank" class="text-gray-400 hover:text-cyan-400" title="LinkedIn">
+                               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                          </a>
                      </div>
                 </div>
             </div>
@@ -1184,7 +1208,6 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- 3D Particle Background Config ---
-            // (Adapted from old site for the new dark theme)
             const PARTICLE_CONFIG = {
                 particles: {
                     number: {
@@ -1251,7 +1274,12 @@
             const researchBtn = document.getElementById('researchBtn');
             const researchMenu = document.getElementById('researchMenu');
 
-            // --- Research Dropdown Toggle (from your new code) ---
+            // NEW: News Dropdown Elements
+            const newsBtn = document.getElementById('newsBtn');
+            const newsMenu = document.getElementById('newsMenu');
+
+
+            // --- Research Dropdown Toggle ---
             if (researchBtn) {
                 researchBtn.addEventListener('click', (e) => {
                     // Prevent this click from being caught by the document click listener below
@@ -1260,14 +1288,41 @@
                     researchMenu.classList.toggle('pointer-events-none');
                     researchMenu.classList.toggle('-translate-y-2');
                     researchMenu.classList.toggle('translate-y-0');
+                    
+                    // Close news menu if research opens
+                    if (newsMenu && !newsMenu.classList.contains('pointer-events-none')) {
+                        newsMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                        newsMenu.classList.remove('translate-y-0');
+                    }
+                });
+            }
+
+            // --- NEW: News Dropdown Toggle ---
+            if (newsBtn) {
+                newsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    newsMenu.classList.toggle('opacity-0');
+                    newsMenu.classList.toggle('pointer-events-none');
+                    newsMenu.classList.toggle('-translate-y-2');
+                    newsMenu.classList.toggle('translate-y-0');
+
+                    // Close research menu if news opens
+                    if (researchMenu && !researchMenu.classList.contains('pointer-events-none')) {
+                        researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                        researchMenu.classList.remove('translate-y-0');
+                    }
                 });
             }
             
-            // --- Close dropdown when clicking outside ---
+            // --- Close dropdowns when clicking outside ---
             document.addEventListener('click', () => {
                 if (researchMenu && !researchMenu.classList.contains('pointer-events-none')) {
                     researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
                     researchMenu.classList.remove('translate-y-0');
+                }
+                 if (newsMenu && !newsMenu.classList.contains('pointer-events-none')) {
+                    newsMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                    newsMenu.classList.remove('translate-y-0');
                 }
             });
 
@@ -1279,8 +1334,36 @@
                 });
             }
 
-            // --- Page Navigation Logic ---
-            const showPage = (pageId) => {
+            // --- News Filtering Logic Refactored to Function ---
+            function applyNewsFilter(filter) {
+                const filterButtons = document.querySelectorAll('.btn-news-filter');
+                const newsContainer = document.getElementById('news-container');
+
+                if (!newsContainer) return;
+
+                const newsItems = newsContainer.querySelectorAll('.news-item');
+
+                // 1. Update button active state
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-filter') === filter) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // 2. Filter news items
+                newsItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // --- Page Navigation Logic (Modified to accept optional filter) ---
+            const showPage = (pageId, initialFilter = 'all') => {
                 // Hide all pages
                 pages.forEach(page => {
                     page.classList.add('hidden');
@@ -1298,12 +1381,13 @@
                     }
                 }
                 
+                // NEW: If navigating to the news page, apply the filter
+                if (pageId === 'news') {
+                    applyNewsFilter(initialFilter);
+                }
+
                 // Update URL hash
-                // Only update hash if it's not the default home to avoid '#'
                 if (pageId === 'home') {
-                    // history.pushState(null, null, ' '); // <-- This causes a SecurityError in blob: environments
-                    // We can either set it to #home or clear the hash, but clearing might also fail.
-                    // Let's try setting it to #home, which is a safe hash operation.
                     window.location.hash = 'home';
                 } else {
                     window.location.hash = pageId;
@@ -1312,13 +1396,17 @@
                 // Update active nav link
                 updateActiveLink(pageId);
                 
-                // Close mobile menu and research dropdown on navigation
+                // Close mobile menu and dropdowns on navigation
                 if (mobileMenu) {
                     mobileMenu.classList.add('hidden');
                 }
                 if (researchMenu) {
                     researchMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
                     researchMenu.classList.remove('translate-y-0');
+                }
+                 if (newsMenu) {
+                    newsMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                    newsMenu.classList.remove('translate-y-0');
                 }
 
                 // Scroll to top of content
@@ -1331,55 +1419,65 @@
             const updateActiveLink = (pageId) => {
                  navLinks.forEach(link => {
                      link.classList.remove('active');
-                     // Handle dropdown links and main links
+                     
+                     // 1. Check for direct match (like Home, People, Publications, etc.)
                      if (link.getAttribute('href') === `#${pageId}`) {
                          link.classList.add('active');
                      }
                  });
+
+                 // 2. Handle Dropdown Parent (Research)
+                 if (pageId.startsWith('research-')) {
+                    const researchDropdownButton = document.getElementById('researchBtn');
+                    if (researchDropdownButton) researchDropdownButton.classList.add('active');
+                 }
+
+                 // 3. Handle Dropdown Parent (News & Events, which now includes Gallery)
+                 if (pageId === 'news' || pageId === 'gallery') {
+                    const newsDropdownButton = document.getElementById('newsBtn');
+                    if (newsDropdownButton) newsDropdownButton.classList.add('active');
+                 }
             };
 
-            // Event listener for all page links
+            // Event listener for all page links (Modified to extract data-filter)
             pageLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('href').substring(1);
-                    showPage(targetId);
+                    // NEW: Capture filter from data-filter attribute (used in news dropdown)
+                    const initialFilter = link.getAttribute('data-filter') || 'all'; 
+                    showPage(targetId, initialFilter);
                 });
             });
 
-            // --- Initial Page Load Logic ---
-            const initialPageId = window.location.hash.substring(1) || 'home';
-            showPage(initialPageId);
-
-            // --- News Filtering Logic ---
+            // --- Re-add News Filtering Logic for button clicks on the page itself ---
             const filterButtons = document.querySelectorAll('.btn-news-filter');
-            const newsContainer = document.getElementById('news-container');
-
-            if (filterButtons.length > 0 && newsContainer) {
-                const newsItems = newsContainer.querySelectorAll('.news-item');
-
+            if (filterButtons.length > 0) {
                 filterButtons.forEach(button => {
                     button.addEventListener('click', () => {
                         const filter = button.getAttribute('data-filter');
-
-                        // Update button active state
-                        filterButtons.forEach(btn => btn.classList.remove('active'));
-                        button.classList.add('active');
-
-                        // Filter news items
-                        newsItems.forEach(item => {
-                            const category = item.getAttribute('data-category');
-                            if (filter === 'all' || category === filter) {
-                                item.classList.remove('hidden');
-                            } else {
-                                item.classList.add('hidden');
-                            }
-                        });
+                        // Use the refactored function
+                        applyNewsFilter(filter);
                     });
                 });
             }
-            // --- End of News Filtering Logic ---
-            
+
+            // --- Initial Page Load Logic ---
+            const initialHash = window.location.hash.substring(1);
+            let initialPageId = initialHash || 'home';
+            let initialFilter = 'all';
+
+            // Check if the hash is for a research subpage (only for activating the research button)
+            if (initialPageId.startsWith('research-')) {
+                // If it's a research subpage, show that page but treat the nav activation separately
+                updateActiveLink(initialPageId);
+            } else if (initialPageId === 'news') {
+                 // If the hash is #news, we check if a filter was possibly stored/intended, 
+                 // but since hashes are simple, we default to 'all' and let the dropdown links handle the filtering.
+                 initialFilter = 'all';
+            }
+            showPage(initialPageId, initialFilter);
+
             // --- 3D Gallery Carousel Logic ---
             const carousel = document.getElementById('gallery-carousel');
             if (carousel) {

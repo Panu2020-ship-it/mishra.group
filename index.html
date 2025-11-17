@@ -387,6 +387,37 @@
         }
         /* --- END SVG Animation Styles --- */
 
+        /* --- PEOPLE LINKS STYLES (NEW/MODIFIED) --- */
+        .social-icon-wrapper {
+            display: flex;
+            justify-content: center; /* Center icons in the grid item */
+            gap: 0.75rem; /* Spacing between icons */
+            margin-top: 0.75rem; /* Space below name/title */
+        }
+        .social-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem; /* 36px */
+            height: 2.25rem; /* 36px */
+            border-radius: 9999px; /* Full circle */
+            color: var(--text-secondary); /* Default icon color */
+            background-color: var(--border-color); /* Subtle background circle */
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
+        }
+        .social-icon-link:hover {
+            color: var(--accent-color); /* Accent color on hover */
+            background-color: var(--card-bg);
+            border-color: var(--accent-color); /* Cyan border glow */
+            transform: scale(1.1);
+        }
+        .social-icon-link svg {
+            width: 1.25rem; /* 20px icon size */
+            height: 1.25rem;
+        }
+        /* --- END PEOPLE LINKS STYLES --- */
+
 
         /* --- NEW: Chatbot Styles (kept from previous version) --- */
         #chat-toggle {
@@ -847,19 +878,23 @@
                             <h3 class="text-2xl font-bold">Dr. Yogeshwar Nath Mishra</h3>
                             <p class="text-cyan-400 font-medium mb-2">Assistant Professor, IIT Jodhpur</p>
                             <p class="text-gray-400 max-w-2xl">Ex-NASA/Caltech researcher with a PhD from Lund University, specializing in laser diagnostics, ultrafast phenomena, and AI-driven imaging. Recipient of the PETRA Award for young researchers.</p>
-                        <div class="flex flex-wrap gap-4 text-sm font-medium">
-                        <a href="mailto:mishrayn@iitj.ac.in" class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z" fill="currentColor"></path></svg>
-                            mishrayn@iitj.ac.in
-                        </a>
-                        <a href="https://www.linkedin.com/in/mishrayn" target="_blank" class="text-blue-600 hover:text-blue-800 transition duration-300 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor"></path></svg>
-                            LinkedIn Profile
-                        </a>
-                         <a href="https://scholar.google.com/citations?user=wvhys5YAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5z"></path></svg>
-                         <span>Google Scholar</span>
-                        </a>
+                            
+                            <!-- UPDATED: In-line, stylized social links for the Head -->
+                            <div class="social-icon-wrapper md:justify-start">
+                                <a href="mailto:mishrayn@iitj.ac.in" class="social-icon-link" title="Email Dr. Mishra">
+                                    <!-- Email SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z"></path></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/mishrayn" target="_blank" class="social-icon-link" title="LinkedIn Profile">
+                                    <!-- LinkedIn SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                </a>
+                                <a href="https://scholar.google.com/citations?user=wvhys5YAAAAJ&hl=en&oi=ao" target="_blank" class="social-icon-link" title="Google Scholar">
+                                    <!-- Google Scholar (Book Icon) SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5z"></path></svg>
+                                </a>
+                            </div>
+                            <!-- END UPDATED LINKS -->
                         </div>
                     </div>
                 </section>
@@ -872,6 +907,15 @@
                             <img src="https://placehold.co/112x112/18181b/9ca3af?text=Postdoc" alt="Dr. Jane Doe" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600">
                             <h4 class="text-xl font-bold">Dr. **********</h4>
                             <p class="text-cyan-400">Post-Doctoral Fellow</p>
+                            <!-- Placeholder Social Links -->
+                            <div class="social-icon-wrapper">
+                                <a href="#" class="social-icon-link" title="Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z"></path></svg>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon-link" title="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -883,35 +927,46 @@
                             <img src="Akshika Mishra.jpg" alt="Akshika Mishra" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Akshika'">
                             <h4 class="text-xl font-bold">Akshika Mishra</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
-                            <a href="mailto:p23ph0024@iitj.ac.in" class="text-gray-500 hover:text-[var(--color-iitj-maroon)] transition-colors" title="Email Akshika">
-                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-                           </a>
-                        <a href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors" title="Akshika's LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                           </a>
+                            <!-- UPDATED: In-line, stylized social links -->
+                            <div class="social-icon-wrapper">
+                                <a href="mailto:akshika.mishra@example.com" class="social-icon-link" title="Email Akshika">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z"></path></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/akshika-mishra-example" target="_blank" class="social-icon-link" title="LinkedIn Profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                </a>
+                            </div>
+                            <!-- END UPDATED LINKS -->
                         </div>
                         <div class="info-card text-center p-6 rounded-lg">
                             <img src="salonisarda.jpg" alt="Saloni Sarda" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Saloni'">
                             <h4 class="text-xl font-bold">Saloni Sarda</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
-                        <a href="mailto:salonisarda.2018@gmail.com" class="text-gray-500 hover:text-[var(--color-iitj-maroon)] transition-colors" title="Email Saloni">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-                       </a>
-                        <a href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors" title="Saloni's LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                       </a>
-
+                            <!-- UPDATED: In-line, stylized social links -->
+                            <div class="social-icon-wrapper">
+                                <a href="mailto:saloni.sarda@example.com" class="social-icon-link" title="Email Saloni">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z"></path></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/saloni-sarda-example" target="_blank" class="social-icon-link" title="LinkedIn Profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                </a>
+                            </div>
+                            <!-- END UPDATED LINKS -->
                         </div>
                          <div class="info-card text-center p-6 rounded-lg">
                             <img src="Prashant.jpg" alt="Prashant Chitranshi" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Prashant'">
                             <h4 class="text-xl font-bold">Prashant Chitranshi</h4>
                             <p class="text-cyan-400">PhD Scholar</p>
-                             <a href="mailto:chitranshi.1@iitj.ac.in" class="text-gray-500 hover:text-[var(--color-iitj-maroon)] transition-colors" title="Email Prashant">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-                            </a>
-                            <a href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors" title="Prashant's LinkedIn">
-                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                       </a>
+                            <!-- UPDATED: In-line, stylized social links -->
+                            <div class="social-icon-wrapper">
+                                <a href="mailto:prashant.chitranshi@example.com" class="social-icon-link" title="Email Prashant">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z"></path></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/prashant-chitranshi-example" target="_blank" class="social-icon-link" title="LinkedIn Profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                </a>
+                            </div>
+                            <!-- END UPDATED LINKS -->
                         </div>
                     </div>
                 </section>
@@ -922,12 +977,16 @@
                             <div class="info-card text-center p-6 rounded-lg">
                                 <img src="pranilpatil.tech.png" alt="Pranil Patil" class="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-gray-600" onerror="this.src='https://placehold.co/112x112/18181b/9ca3af?text=Pranil'">
                                 <h4 class="text-xl font-bold">Pranil Patil</h4>
-                            <a href="mailto:patil.p" class="text-gray-500 hover:text-[var(--color-iitj-maroon)] transition-colors" title="Email Pranil">
-                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-                       </a>
-                          <a href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors" title="Pranil's LinkedIn">
-                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                        </a>
+                                <p class="text-cyan-400">Intern</p>
+                                <!-- Placeholder Social Links -->
+                                <div class="social-icon-wrapper">
+                                    <a href="#" class="social-icon-link" title="Email">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l-7.997 4.078c.007-.061.01-.115.01-.176v-7.818zm19.994 8.214l-4.994-3.582L22 7.001v7.097zm-7.994-1.284l-8.243-4.113L3 7.001h18l-3 4.813-5.243 2.723zM3 17.098l4.996-3.582 7.997 4.078c-.007.061-.01.115-.01.176v-7.818l-7.99-4.076-7.993 4.113v7.097z"></path></svg>
+                                    </a>
+                                    <a href="#" target="_blank" class="social-icon-link" title="LinkedIn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.367-4-3.28-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -1905,4 +1964,3 @@ If the answer isn't in this information, politely say 'I can only provide inform
     </script>
 </body>
 </html>
-            

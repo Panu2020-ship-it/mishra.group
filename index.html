@@ -344,7 +344,51 @@
             }
         }
 
-        /* --- NEW: Chatbot Styles --- */
+        /* --- NEW: Impact Card Glow --- */
+        .impact-card-glow {
+            /* Subtle blue glow */
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.3), 0 0 20px rgba(0, 191, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .impact-card-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Faint radial gradient from bottom left corner */
+            background: radial-gradient(circle at 10% 90%, rgba(0, 191, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        /* --- END Impact Card Glow --- */
+
+        /* --- NEW: SVG Animation Styles --- */
+        .pulse-line {
+            stroke: var(--accent-color);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            /* Adjusted speed for sweep animation */
+            animation: sweep 8s infinite alternate ease-in-out; 
+        }
+        .visual-pulse {
+            animation: subtle-pulse 4s infinite alternate ease-in-out;
+        }
+        @keyframes sweep {
+            /* Dashed line effect to make it look like a sweep */
+            0% { stroke-dashoffset: 800; }
+            100% { stroke-dashoffset: 0; }
+        }
+        @keyframes subtle-pulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        /* --- END SVG Animation Styles --- */
+
+
+        /* --- NEW: Chatbot Styles (kept from previous version) --- */
         #chat-toggle {
             position: fixed;
             bottom: 1.25rem; /* 20px */
@@ -612,6 +656,73 @@
                         We are a dynamic research group at IIT Jodhpur dedicated to pushing the boundaries of optical science and engineering. Our interdisciplinary work combines fundamental ultrafast science with applied innovations in biomedical imaging, sustainable energy diagnostics, and space technology.
                     </p>
                 </section>
+                
+                <!-- NEW CREATIVE ELEMENT: SCIENTIFIC VISION -->
+                <section class="mt-20 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold section-heading mb-4 mx-auto">Scientific Vision: The Invisible Made Visible</h2>
+                    <p class="max-w-4xl mx-auto text-xl text-gray-400 mb-12">
+                        Harnessing the power of light and intelligence to uncover dynamic phenomena across spatial and temporal scales.
+                    </p>
+
+                    <!-- Animated Grid Visualization -->
+                    <div class="relative w-full max-w-5xl h-72 mx-auto overflow-hidden info-card p-4 rounded-xl shadow-2xl">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-full h-full opacity-70" viewBox="0 0 800 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <!-- Background Grid Pattern -->
+                                    <pattern id="smallGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                                        <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#27272a" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#smallGrid)" class="visual-pulse"/>
+
+                                <!-- Dynamic Wave Effect -->
+                                <path d="M 0 150 C 200 50, 400 250, 600 150 S 800 50, 800 150" 
+                                      class="pulse-line" 
+                                      stroke-dasharray="800" 
+                                      stroke-width="2"/>
+                                      
+                                <!-- Center Focal Point -->
+                                <circle cx="400" cy="150" r="10" fill="#00bfff" class="visual-pulse"/>
+                                <text x="400" y="150" fill="white" font-size="14" text-anchor="middle" dy="5" class="visual-pulse font-bold">AI</text>
+                                
+                                <!-- Bottom Text Overlay -->
+                                <text x="400" y="270" fill="#9ca3af" font-size="18" text-anchor="middle">Ultrafast Science meets Deep Learning</text>
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0 rounded-xl bg-black opacity-30 pointer-events-none"></div>
+                    </div>
+                </section>
+                <!-- END NEW CREATIVE ELEMENT -->
+                
+                <!-- EXISTING: IMPACT METRICS SECTION -->
+                <section class="mt-20">
+                    <h2 class="text-3xl md:text-4xl font-bold section-heading mb-8 text-center mx-auto">Our Impact in Numbers</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <!-- Metric 1: Ultra-Speed -->
+                        <div class="info-card p-6 rounded-xl impact-card-glow">
+                            <!-- Data-target is extremely high, JS will format it as 1T+ -->
+                            <p id="metric-speed" data-target="1000000000000" class="text-4xl md:text-5xl font-extrabold text-yellow-400">0</p>
+                            <p class="text-sm md:text-lg text-gray-400 mt-2">Frames Per Second (Ultra-Speed)</p>
+                        </div>
+                        <!-- Metric 2: Publications -->
+                        <div class="info-card p-6 rounded-xl impact-card-glow">
+                            <p id="metric-papers" data-target="25" class="text-4xl md:text-5xl font-extrabold text-yellow-400">0</p>
+                            <p class="text-sm md:text-lg text-gray-400 mt-2">High-Impact Publications</p>
+                        </div>
+                        <!-- Metric 3: Patents -->
+                        <div class="info-card p-6 rounded-xl impact-card-glow">
+                            <p id="metric-patents" data-target="5" class="text-4xl md:text-5xl font-extrabold text-yellow-400">0</p>
+                            <p class="text-sm md:text-lg text-gray-400 mt-2">Active Patents & Disclosures</p>
+                        </div>
+                        <!-- Metric 4: Grants -->
+                        <div class="info-card p-6 rounded-xl impact-card-glow">
+                            <p id="metric-grants" data-target="12" class="text-4xl md:text-5xl font-extrabold text-yellow-400">0</p>
+                            <p class="text-sm md:text-lg text-gray-400 mt-2">Research Grants Secured</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- END IMPACT METRICS SECTION -->
                 
                     <section class="mt-16">
                         <h2 class="text-3xl md:text-4xl font-bold section-heading mb-8 text-center">Core Research Areas</h2>
@@ -1086,6 +1197,16 @@
 
             <div id="contact-page" class="page-content hidden">
                 <h1 class="text-4xl font-bold section-heading mb-12">Contact Us</h1>
+                
+                <!-- NEW CREATIVE ELEMENT: Vision Statement Card -->
+                <div class="info-card p-8 rounded-xl border-cyan-500 border-2 mb-12 text-center shadow-xl">
+                    <p class="text-2xl md:text-3xl font-light italic text-gray-300">
+                        "The greatest leaps in sensing and vision lie not in seeing more, but in seeing **differently**."
+                    </p>
+                    <p class="text-md md:text-lg mt-4 font-semibold text-cyan-400">- AISL Lab Philosophy</p>
+                </div>
+                <!-- END CREATIVE ELEMENT -->
+
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
                         <h3 class="text-2xl font-bold text-cyan-400 mb-4">Get in Touch</h3>
@@ -1117,6 +1238,25 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- NEW MAP SECTION -->
+                <section class="mt-16">
+                    <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center section-heading mx-auto">Find Us at IIT Jodhpur</h2>
+                    <div class="info-card p-4 rounded-xl overflow-hidden shadow-2xl">
+                        <!-- Google Maps Embed for IIT Jodhpur, Department of Physics -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11394.026402431713!2d73.0232497914101!3d26.4716912808298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39418c21a4f00001%3A0x67a1ff14619a972c!2sDepartment%20of%20Physics%2C%20IIT%20Jodhpur!5e0!3m2!1sen!2sin!4v1700100000000!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius: 0.5rem;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </section>
+                <!-- END NEW MAP SECTION -->
+
             </div>
 
         </div>
@@ -1462,6 +1602,46 @@
                 });
             }
 
+            // --- NEW: Dynamic Counter Animation Logic for Home Page ---
+            const animateCounters = () => {
+                const counters = document.querySelectorAll('#home-page [data-target]');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    let count = 0;
+                    const duration = 2000; // 2 seconds
+                    const start = performance.now();
+
+                    const updateCount = (timestamp) => {
+                        const elapsed = timestamp - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        let currentCount = Math.floor(progress * target);
+
+                        if (target >= 1000000000000) {
+                            // Handle extremely large number (for speed metric)
+                            // We animate up to 100 and then show 1T+
+                            currentCount = Math.floor(progress * 100);
+                            counter.textContent = `${currentCount}T+`;
+                        } else {
+                            counter.textContent = currentCount;
+                        }
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            // Ensure final value is accurate/formatted
+                            if (target >= 1000000000000) {
+                                counter.textContent = '1T+'; // Trillion+ for ultra-speed
+                            } else {
+                                counter.textContent = target;
+                            }
+                        }
+                    };
+                    requestAnimationFrame(updateCount);
+                });
+            };
+
+
             // --- Initial Page Load Logic ---
             const initialHash = window.location.hash.substring(1);
             let initialPageId = initialHash || 'home';
@@ -1477,6 +1657,9 @@
                  initialFilter = 'all';
             }
             showPage(initialPageId, initialFilter);
+            
+            // Start counter animation after the page layout is settled
+            setTimeout(animateCounters, 500); 
 
             // --- 3D Gallery Carousel Logic ---
             const carousel = document.getElementById('gallery-carousel');
@@ -1684,3 +1867,4 @@ If the answer isn't in this information, politely say 'I can only provide inform
     </script>
 </body>
 </html>
+            

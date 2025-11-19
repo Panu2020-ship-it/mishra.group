@@ -297,7 +297,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures no black bars if aspect ratio differs slightly */
+            object-fit: cover;
             opacity: 0.9;
             transition: opacity 0.3s ease;
         }
@@ -851,64 +851,144 @@
                     </div>
 
                     <!-- ================================================================================== -->
-                    <!-- PODCAST & MEDIA SECTION (FIXED WITH WORKING THUMBNAILS & REAL IDS) -->
+                    <!-- PODCAST & MEDIA SECTION (10+ VIDEOS + LALLANTOP) -->
                     <!-- ================================================================================== -->
 
-                    <!-- MEDIA ITEM 1 (2020 - The Famous Lund Breakthrough) -->
-                    <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-cyan-400">2020: World's Fastest Camera (5 Trillion FPS)</h3>
-                            <span class="text-sm text-gray-500">Research Breakthrough</span>
-                        </div>
-                        <p class="text-gray-300 text-sm">Featuring Dr. Mishra's groundbreaking work at Lund University (LS-CUP), capable of capturing light in motion. This research gained global attention.</p>
-                        
-                        <!-- Working Video Container with Facade Pattern -->
-                        <div class="video-container" data-video-id="7Yd9Gn0L5sA">
-                            <img src="https://img.youtube.com/vi/7Yd9Gn0L5sA/hqdefault.jpg" alt="Lund University Camera Thumbnail" class="video-thumbnail">
-                            <div class="play-button">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                   </div>
+                    <!-- This container is HIDDEN by default, shown via JS filter -->
+                    <div class="news-item hidden w-full" data-category="podcasts">
+                        <!-- Grid Layout for Podcasts -->
+                        <div class="grid md:grid-cols-2 gap-6">
 
-                   <!-- MEDIA ITEM 2 (General - SLIPI Diagnostics) -->
-                   <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-cyan-400">Laser Imaging Diagnostics (SLIPI)</h3>
-                            <span class="text-sm text-gray-500">Technical Demo</span>
-                        </div>
-                        <p class="text-gray-300 text-sm">Demonstrating Structured Laser Illumination Planar Imaging (SLIPI), a core technique used in our lab for spray analysis.</p>
-                        
-                        <!-- Working Video Container with Facade Pattern -->
-                        <div class="video-container" data-video-id="b8Kq0o5B9jI">
-                             <img src="https://img.youtube.com/vi/b8Kq0o5B9jI/hqdefault.jpg" alt="SLIPI Demo Thumbnail" class="video-thumbnail">
-                             <div class="play-button">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
+                            <!-- Video 1: Exclusive Podcast -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Exclusive Podcast with Dr. Mishra</h3>
+                                    <span class="text-xs text-gray-500">Interview</span>
+                                </div>
+                                <div class="video-container" data-video-id="Qfx60PQKCJA">
+                                    <img src="https://img.youtube.com/vi/Qfx60PQKCJA/hqdefault.jpg" alt="Podcast Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- MEDIA ITEM 3 (2025 - IIT Jodhpur Context) -->
-                    <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
-                         <div class="flex items-center justify-between">
-                             <h3 class="text-xl font-bold text-cyan-400">Innovation at IIT Jodhpur</h3>
-                             <span class="text-sm text-gray-500">Lab Context</span>
-                         </div>
-                         <p class="text-gray-300 text-sm">A look at the research ecosystem at IIT Jodhpur, where the AISL lab operates.</p>
-                         
-                         <!-- Working Video Container with Facade Pattern -->
-                         <div class="video-container" data-video-id="O4XQ_4z0y_g">
-                            <img src="https://img.youtube.com/vi/O4XQ_4z0y_g/hqdefault.jpg" alt="IIT Jodhpur Video Thumbnail" class="video-thumbnail">
-                            <div class="play-button">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
+
+                            <!-- Video 2: Field Microscope -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Field Microscope | Latest Update</h3>
+                                    <span class="text-xs text-gray-500">Tech Demo</span>
+                                </div>
+                                <div class="video-container" data-video-id="APQqgZ2NvkM">
+                                    <img src="https://img.youtube.com/vi/APQqgZ2NvkM/hqdefault.jpg" alt="Microscope Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
                             </div>
-                         </div>
+
+                            <!-- Video 3: Farmer's Son Feature -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Farmer's Son Makes India Proud</h3>
+                                    <span class="text-xs text-gray-500">Feature</span>
+                                </div>
+                                <div class="video-container" data-video-id="easSYYcd_4k">
+                                    <img src="https://img.youtube.com/vi/easSYYcd_4k/hqdefault.jpg" alt="Feature Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Video 4: Being with Dr. Mishra -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Being with Dr. Mishra (NASA)</h3>
+                                    <span class="text-xs text-gray-500">Interview</span>
+                                </div>
+                                <div class="video-container" data-video-id="FWhW5xSrrv0">
+                                    <img src="https://img.youtube.com/vi/FWhW5xSrrv0/hqdefault.jpg" alt="Interview Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Video 5: JoshTalks -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Josh Talks: Azamgarh to NASA</h3>
+                                    <span class="text-xs text-gray-500">Motivational</span>
+                                </div>
+                                <div class="video-container" data-video-id="di_0YYqWx_c">
+                                    <img src="https://img.youtube.com/vi/di_0YYqWx_c/hqdefault.jpg" alt="JoshTalks Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Video 6: Indian NASA Scientist -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Indian NASA Scientist Feature</h3>
+                                    <span class="text-xs text-gray-500">Documentary</span>
+                                </div>
+                                <div class="video-container" data-video-id="75IM08elCB8">
+                                    <img src="https://img.youtube.com/vi/75IM08elCB8/hqdefault.jpg" alt="Feature Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Video 7: DNN24 Short -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">How to Become a Scientist</h3>
+                                    <span class="text-xs text-gray-500">Career Advice</span>
+                                </div>
+                                <div class="video-container" data-video-id="m2oIpQpeuhQ">
+                                    <img src="https://img.youtube.com/vi/m2oIpQpeuhQ/hqdefault.jpg" alt="Short Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Video 8: Scientist Tips -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Tips for Aspiring Scientists</h3>
+                                    <span class="text-xs text-gray-500">Guidance</span>
+                                </div>
+                                <div class="video-container" data-video-id="SqwPrBrm5tY">
+                                    <img src="https://img.youtube.com/vi/SqwPrBrm5tY/hqdefault.jpg" alt="Tips Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                             <!-- Video 9: TV9 Exclusive -->
+                             <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">TV9 Exclusive: Azamgarh to NASA</h3>
+                                    <span class="text-xs text-gray-500">News Feature</span>
+                                </div>
+                                <div class="video-container" data-video-id="ghjoR3v-pbM">
+                                    <img src="https://img.youtube.com/vi/ghjoR3v-pbM/hqdefault.jpg" alt="TV9 Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Video 10: Azamgarh Image -->
+                            <div class="info-card p-4 rounded-lg flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-cyan-400 truncate">Changing the Image of Azamgarh</h3>
+                                    <span class="text-xs text-gray-500">Social Impact</span>
+                                </div>
+                                <div class="video-container" data-video-id="osiDwDZGRNM">
+                                    <img src="https://img.youtube.com/vi/osiDwDZGRNM/hqdefault.jpg" alt="Impact Thumbnail" class="video-thumbnail">
+                                    <div class="play-button"><svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                                </div>
+                            </div>
+
+                            <!-- Lallantop Audio Card (External Link) -->
+                            <div class="info-card p-6 rounded-lg flex flex-col justify-center items-center text-center border-2 border-red-500/30">
+                                <h3 class="text-xl font-bold text-red-400 mb-2">Lallantop Podcast</h3>
+                                <p class="text-gray-400 text-sm mb-4">Listen to Dr. Mishra's full audio interview on The Lallantop.</p>
+                                <a href="https://www.thelallantop.com/" target="_blank" class="px-6 py-2 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-colors">
+                                    Listen Now
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
 
                     <!-- ================================================================================== -->
@@ -1717,7 +1797,8 @@
                     const videoId = this.getAttribute('data-video-id');
                     const iframe = document.createElement('iframe');
                     // Construct YouTube embed URL with autoplay
-                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                    // ADDED: mute=1 to ensure autoplay works on all browsers (fixes error issues)
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0`;
                     iframe.className = 'video-embed';
                     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
                     iframe.setAttribute('allowfullscreen', '');

@@ -278,7 +278,7 @@
             transform: scale(1.03);
         }
 
-        /* --- VIDEO PLAYER FACADE STYLES (FIXED) --- */
+        /* --- VIDEO PLAYER FACADE STYLES (OPTIMIZED) --- */
         .video-container {
             position: relative;
             width: 100%;
@@ -290,44 +290,47 @@
             cursor: pointer;
             border: 1px solid var(--border-color);
         }
+        /* Thumbnail Image Style */
         .video-thumbnail {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
+            object-fit: cover; /* Ensures no black bars if aspect ratio differs slightly */
+            opacity: 0.9;
             transition: opacity 0.3s ease;
         }
         .video-container:hover .video-thumbnail {
-            opacity: 0.6;
+            opacity: 0.7;
         }
+        /* Play Button Style */
         .play-button {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            background-color: rgba(0, 191, 255, 0.8); /* Cyan with opacity */
+            width: 68px;
+            height: 68px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--accent-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 10;
-            box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+            pointer-events: none; /* Ensures click passes through to container */
         }
         .video-container:hover .play-button {
+            background-color: var(--accent-color);
             transform: translate(-50%, -50%) scale(1.1);
-            background-color: #00bfff;
         }
         .play-icon {
-            width: 24px;
-            height: 24px;
-            fill: #0a0a0a; /* Dark fill for the icon */
-            margin-left: 4px; /* Visual centering */
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+            margin-left: 4px;
         }
         iframe.video-embed {
             position: absolute;
@@ -337,6 +340,7 @@
             height: 100%;
             z-index: 20;
             background-color: #000;
+            border: none;
         }
 
         /* --- Gallery Carousel Styles --- */
@@ -850,26 +854,7 @@
                     <!-- PODCAST & MEDIA SECTION (FIXED WITH WORKING THUMBNAILS & REAL IDS) -->
                     <!-- ================================================================================== -->
 
-                    <!-- MEDIA ITEM 1 (2025 - IIT Jodhpur Context) -->
-                    <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
-                         <div class="flex items-center justify-between">
-                             <h3 class="text-xl font-bold text-cyan-400">2025: Innovation at IIT Jodhpur</h3>
-                             <span class="text-sm text-gray-500">Lab Context</span>
-                         </div>
-                         <p class="text-gray-300 text-sm">A look at the research ecosystem at IIT Jodhpur, where the AISL lab operates.</p>
-                         
-                         <!-- Working Video Container with Facade Pattern -->
-                         <div class="video-container" data-video-id="yM-jKk_g0c0">
-                            <img src="https://youtu.be/rToNx_ORBJM?si=k4K9yo4DveM7phdy" alt="IIT Jodhpur Video Thumbnail" class="video-thumbnail">
-                            <div class="play-button">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                         </div>
-                    </div>
-
-                    <!-- MEDIA ITEM 2 (2020 - The Famous Lund Breakthrough) -->
+                    <!-- MEDIA ITEM 1 (2020 - The Famous Lund Breakthrough) -->
                     <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-bold text-cyan-400">2020: World's Fastest Camera (5 Trillion FPS)</h3>
@@ -888,7 +873,7 @@
                         </div>
                    </div>
 
-                   <!-- MEDIA ITEM 3 (General - SLIPI Diagnostics) -->
+                   <!-- MEDIA ITEM 2 (General - SLIPI Diagnostics) -->
                    <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-bold text-cyan-400">Laser Imaging Diagnostics (SLIPI)</h3>
@@ -897,14 +882,33 @@
                         <p class="text-gray-300 text-sm">Demonstrating Structured Laser Illumination Planar Imaging (SLIPI), a core technique used in our lab for spray analysis.</p>
                         
                         <!-- Working Video Container with Facade Pattern -->
-                        <div class="video-container" data-video-id="h_s8_6Xf_bc">
-                             <img src="https://img.youtube.com/vi/h_s8_6Xf_bc/hqdefault.jpg" alt="SLIPI Demo Thumbnail" class="video-thumbnail">
+                        <div class="video-container" data-video-id="b8Kq0o5B9jI">
+                             <img src="https://img.youtube.com/vi/b8Kq0o5B9jI/hqdefault.jpg" alt="SLIPI Demo Thumbnail" class="video-thumbnail">
                              <div class="play-button">
                                 <svg class="play-icon" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z"/>
                                 </svg>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- MEDIA ITEM 3 (2025 - IIT Jodhpur Context) -->
+                    <div class="info-card p-6 rounded-lg flex flex-col gap-4 news-item hidden" data-category="podcasts">
+                         <div class="flex items-center justify-between">
+                             <h3 class="text-xl font-bold text-cyan-400">Innovation at IIT Jodhpur</h3>
+                             <span class="text-sm text-gray-500">Lab Context</span>
+                         </div>
+                         <p class="text-gray-300 text-sm">A look at the research ecosystem at IIT Jodhpur, where the AISL lab operates.</p>
+                         
+                         <!-- Working Video Container with Facade Pattern -->
+                         <div class="video-container" data-video-id="O4XQ_4z0y_g">
+                            <img src="https://img.youtube.com/vi/O4XQ_4z0y_g/hqdefault.jpg" alt="IIT Jodhpur Video Thumbnail" class="video-thumbnail">
+                            <div class="play-button">
+                                <svg class="play-icon" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                         </div>
                     </div>
 
                     <!-- ================================================================================== -->
